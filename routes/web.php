@@ -11,9 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', 'HomeController@dashboard')->name('home');
+Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
+Route::resource('user', 'UserController')->middleware('checkRole:admin');;
+Route::resource('pelajaran', 'PelajaranController')->middleware('checkRole:adminGuru');
+Route::resource('paket_soal', 'PaketSoalController')->middleware('checkRole:adminGuru');
+Route::resource('soal', 'SoalController')->middleware('checkRole:adminGuru');
+Route::resource('jadwal_ujian', 'JadwalUjianController')->middleware('checkRole:adminGuru');
+
 Route::get('/login', function () {
     return view('auth.login');
 });
@@ -59,3 +64,6 @@ Route::get('/quiz-ce', function () {
 
 
 Route::get('/siswa/ujian', 'UjianController@index');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
