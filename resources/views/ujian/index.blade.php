@@ -1,361 +1,131 @@
 @extends('layout.ujian')
 
 @section('content')
+    <!-- Hero -->
+    <div class="bg-image bg-image-bottom" style="background-image: url('/codebase/src/assets/img/photos/photo34@2x.jpg');">
+        <div class="bg-primary-dark-op">
+            <div class="content content-top text-center overflow-hidden">
+                <div class="pt-50 pb-20">
+                    <h2 class="h4 font-w400 text-white-op invisible" data-toggle="appear" data-class="animated fadeInUp">Welcome to QuizNow!</h2>
+                    <h1 class="font-w700 text-white mb-10 invisible" data-toggle="appear" data-class="animated fadeInUp">Quiz Selanjutnya: Dasar Pemrograman</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END Hero -->
+
     <!-- Page Content -->
     <div class="content">
-        <h2 class="content-heading">
-            <button type="button" class="btn btn-sm btn-rounded btn-primary d-md-none float-right ml-5" data-toggle="class-toggle" data-target=".js-inbox-nav" data-class="d-none d-md-block">Menu</button>
-            <button type="button" class="btn btn-sm btn-rounded btn-success float-right" data-toggle="modal" data-target="#modal-compose">New Message</button>
-            Inbox (23)
-        </h2>
-        <div class="row">
-            <div class="col-md-5 col-xl-3">
-                <!-- Collapsible Inbox Navigation -->
-                <div class="js-inbox-nav d-none d-md-block">
-                    <div class="block">
-                        <div class="block-header block-header-default">
-                            <h3 class="block-title">Navigation</h3>
-                            <div class="block-options">
-                                <div class="dropdown">
-                                    <button type="button" class="btn-block-option" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fa fa-fw fa-ellipsis-v"></i>
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="javascript:void(0)">
-                                            <i class="fa fa-fw fa-flask mr-5"></i>Filter
-                                        </a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="javascript:void(0)">
-                                            <i class="fa fa-fw fa-cogs mr-5"></i>Manage
-                                        </a>
-                                    </div>
+        <div class="row invisible" data-toggle="appear">
+            <div class="col-6">
+                <div class="row">
+                    <!-- Row #1 -->
+                    <div class="col-xl-6 col-12">
+                        <a class="block block-link-pop text-right bg-corporate" href="javascript:void(0)">
+                            <div class="block-content block-content-full clearfix border-black-op-b border-3x">
+                                <div class="float-left mt-10 d-none d-sm-block">
+                                    <i class="si si-fire fa-3x text-corporate-light"></i>
                                 </div>
+                                <div class="font-size-sm font-w600 text-uppercase text-white-op">Nama Quiz</div>
+                                <div class="font-size-h4 font-w600 text-white">UAS Dasprog 2019</div>
                             </div>
-                        </div>
-                        <div class="block-content">
-                            <ul class="nav nav-pills flex-column push">
-                                <li class="nav-item">
-                                    <a class="nav-link d-flex align-items-center justify-content-between active" href="javascript:void(0)">
-                                        <span><i class="fa fa-fw fa-inbox mr-5"></i> Inbox</span>
-                                        <span class="badge badge-pill badge-secondary">23</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link d-flex align-items-center justify-content-between" href="javascript:void(0)">
-                                        <span><i class="fa fa-fw fa-star mr-5"></i> Starred</span>
-                                        <span class="badge badge-pill badge-secondary">30</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link d-flex align-items-center justify-content-between" href="javascript:void(0)">
-                                        <span><i class="fa fa-fw fa-send mr-5"></i> Sent</span>
-                                        <span class="badge badge-pill badge-secondary">79</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link d-flex align-items-center justify-content-between" href="javascript:void(0)">
-                                        <span><i class="fa fa-fw fa-pencil mr-5"></i> Draft</span>
-                                        <span class="badge badge-pill badge-secondary">10</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link d-flex align-items-center justify-content-between" href="javascript:void(0)">
-                                        <span><i class="fa fa-fw fa-folder mr-5"></i> Archive</span>
-                                        <span class="badge badge-pill badge-secondary">99</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link d-flex align-items-center justify-content-between" href="javascript:void(0)">
-                                        <span><i class="fa fa-fw fa-trash mr-5"></i> Trash</span>
-                                        <span class="badge badge-pill badge-secondary">13</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <hr class="my-5">
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="javascript:void(0)">
-                                        <i class="fa fa-fw fa-plus mr-5"></i> Create label
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                        </a>
                     </div>
-                </div>
-                <!-- END Collapsible Inbox Navigation -->
-
-                <!-- Recent Contacts -->
-                <div class="block d-none d-md-block">
-                    <div class="block-header block-header-default">
-                        <h3 class="block-title">Recent Contacts</h3>
-                        <div class="block-options">
-                            <div class="dropdown">
-                                <button type="button" class="btn-block-option" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fa fa-fw fa-ellipsis-v"></i>
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item active" href="javascript:void(0)">
-                                        <i class="fa fa-fw fa-users mr-5"></i> All
-                                    </a>
-                                    <a class="dropdown-item" href="javascript:void(0)">
-                                        <i class="fa fa-fw fa-circle text-success mr-5"></i> Online
-                                    </a>
-                                    <a class="dropdown-item" href="javascript:void(0)">
-                                        <i class="fa fa-fw fa-circle text-danger mr-5"></i> Busy
-                                    </a>
-                                    <a class="dropdown-item" href="javascript:void(0)">
-                                        <i class="fa fa-fw fa-circle text-warning mr-5"></i> Away
-                                    </a>
-                                    <a class="dropdown-item" href="javascript:void(0)">
-                                        <i class="fa fa-fw fa-circle text-muted mr-5"></i> Offline
-                                    </a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="javascript:void(0)">
-                                        <i class="fa fa-fw fa-cogs mr-5"></i>Manage
-                                    </a>
+                    <div class="col-xl-6 col-12">
+                        <a class="block block-link-pop text-right bg-elegance" href="javascript:void(0)">
+                            <div class="block-content block-content-full clearfix border-black-op-b border-3x">
+                                <div class="float-left mt-10 d-none d-sm-block">
+                                    <i class="si si-envelope-letter fa-3x text-elegance-light"></i>
                                 </div>
+                                <div class="font-size-sm font-w600 text-uppercase text-white-op">Durasi</div>
+                                <div class="font-size-h4 font-w600 text-white"><span data-toggle="countTo" data-speed="1000" data-to="60">0</span> menit</div>
                             </div>
-                        </div>
+                        </a>
                     </div>
-                    <div class="block-content block-content-full">
-                        <ul class="nav-users">
-                            <li>
-                                <a href="be_pages_generic_profile.html">
-                                    <img class="img-avatar" src="assets/img/avatars/avatar8.jpg" alt="">
-                                    <i class="fa fa-circle text-success"></i> Lori Grant
-                                    <div class="font-w400 font-size-xs text-muted"><i class="fa fa-location-arrow"></i> New York</div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="be_pages_generic_profile.html">
-                                    <img class="img-avatar" src="assets/img/avatars/avatar15.jpg" alt="">
-                                    <i class="fa fa-circle text-success"></i> Albert Ray
-                                    <div class="font-w400 font-size-xs text-muted"><i class="fa fa-location-arrow"></i> San Fransisco</div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="be_pages_generic_profile.html">
-                                    <img class="img-avatar" src="assets/img/avatars/avatar6.jpg" alt="">
-                                    <i class="fa fa-circle text-warning"></i> Lisa Jenkins
-                                    <div class="font-w400 font-size-xs text-muted"><i class="fa fa-location-arrow"></i> Beijing</div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="be_pages_generic_profile.html">
-                                    <img class="img-avatar" src="assets/img/avatars/avatar12.jpg" alt="">
-                                    <i class="fa fa-circle text-warning"></i> Ralph Murray
-                                    <div class="font-w400 font-size-xs text-muted"><i class="fa fa-location-arrow"></i> Tokyo</div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="be_pages_generic_profile.html">
-                                    <img class="img-avatar" src="assets/img/avatars/avatar14.jpg" alt="">
-                                    <i class="fa fa-circle text-danger"></i> Jack Greene
-                                    <div class="font-w400 font-size-xs text-muted"><i class="fa fa-location-arrow"></i> London</div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="be_pages_generic_profile.html">
-                                    <img class="img-avatar" src="assets/img/avatars/avatar4.jpg" alt="">
-                                    <i class="fa fa-circle text-danger"></i> Megan Fuller
-                                    <div class="font-w400 font-size-xs text-muted"><i class="fa fa-location-arrow"></i> Rio De Janeiro</div>
-                                </a>
-                            </li>
-                        </ul>
+                    <div class="col-xl-6 col-12">
+                        <a class="block block-link-pop text-right bg-primary" href="javascript:void(0)">
+                            <div class="block-content block-content-full clearfix border-black-op-b border-3x">
+                                <div class="float-left mt-10 d-none d-sm-block">
+                                    <i class="si si-bar-chart fa-3x text-primary-light"></i>
+                                </div>
+                                <div class="font-size-sm font-w600 text-uppercase text-white-op">Waktu Mulai</div>
+                                <div class="font-size-h5 font-w600 text-white">17 Mei 2019 08:00:00</div>
+                            </div>
+                        </a>
                     </div>
+                    <div class="col-xl-6 col-12">
+                        <a class="block block-link-pop text-right bg-earth" href="javascript:void(0)">
+                            <div class="block-content block-content-full clearfix border-black-op-b border-3x">
+                                <div class="float-left mt-10 d-none d-sm-block">
+                                    <i class="si si-trophy fa-3x text-earth-light"></i>
+                                </div>
+                                <div class="font-size-sm font-w600 text-uppercase text-white-op">Waktu Selesai</div>
+                                <div class="font-size-h5 font-w600 text-white">17 Mei 2019 10:00:00</div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- END Row #1 -->
                 </div>
-                <!-- END Recent Contacts -->
             </div>
-            <div class="col-md-7 col-xl-9">
-                <!-- Message List -->
-                <div class="block">
-                    <div class="block-header block-header-default">
-                        <div class="block-title">
-                            <strong>1-10</strong> from <strong>23</strong>
-                        </div>
-                        <div class="block-options">
-                            <button type="button" class="btn-block-option" data-toggle="block-option">
-                                <i class="si si-arrow-left"></i>
-                            </button>
-                            <button type="button" class="btn-block-option" data-toggle="block-option">
-                                <i class="si si-arrow-right"></i>
-                            </button>
-                            <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
-                                <i class="si si-refresh"></i>
-                            </button>
-                            <button type="button" class="btn-block-option" data-toggle="block-option" data-action="fullscreen_toggle"></button>
-                        </div>
-                    </div>
-                    <div class="block-content">
-                        <!-- Messages Options -->
-                        <div class="push">
-                            <button type="button" class="btn btn-rounded btn-alt-secondary float-right">
-                                <i class="fa fa-times text-danger mx-5"></i>
-                                <span class="d-none d-sm-inline"> Delete</span>
-                            </button>
-                            <button type="button" class="btn btn-rounded btn-alt-secondary">
-                                <i class="fa fa-archive text-primary mx-5"></i>
-                                <span class="d-none d-sm-inline"> Archive</span>
-                            </button>
-                            <button type="button" class="btn btn-rounded btn-alt-secondary">
-                                <i class="fa fa-star text-warning mx-5"></i>
-                                <span class="d-none d-sm-inline"> Star</span>
-                            </button>
-                        </div>
-                        <!-- END Messages Options -->
 
-                        <!-- Messages -->
-                        <!-- Checkable Table (.js-table-checkable class is initialized in Codebase() -> uiHelperTableToolsCheckable()) -->
-                        <table class="js-table-checkable table table-hover table-vcenter">
-                            <tbody>
-                                <tr>
-                                    <td class="text-center" style="width: 40px;">
-                                        <label class="css-control css-control-primary css-checkbox">
-                                            <input type="checkbox" class="css-control-input">
-                                            <span class="css-control-indicator"></span>
-                                        </label>
-                                    </td>
-                                    <td class="d-none d-sm-table-cell font-w600" style="width: 140px;">Amanda Powell</td>
-                                    <td>
-                                        <a class="font-w600" data-toggle="modal" data-target="#modal-message" href="#">Welcome to our service</a>
-                                        <div class="text-muted mt-5">It's a pleasure to have you on our service..</div>
-                                    </td>
-                                    <td class="d-none d-xl-table-cell font-w600 font-size-sm text-muted" style="width: 120px;">WED</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">
-                                        <label class="css-control css-control-primary css-checkbox">
-                                            <input type="checkbox" class="css-control-input">
-                                            <span class="css-control-indicator"></span>
-                                        </label>
-                                    </td>
-                                    <td class="d-none d-sm-table-cell font-w600">Jack Greene</td>
-                                    <td>
-                                        <a class="font-w600" data-toggle="modal" data-target="#modal-message" href="#">Your subscription was updated</a>
-                                        <div class="text-muted mt-5">We are glad you decided to go with a vip..</div>
-                                    </td>
-                                    <td class="d-none d-xl-table-cell font-w600 font-size-sm text-muted">WED</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">
-                                        <label class="css-control css-control-primary css-checkbox">
-                                            <input type="checkbox" class="css-control-input">
-                                            <span class="css-control-indicator"></span>
-                                        </label>
-                                    </td>
-                                    <td class="d-none d-sm-table-cell font-w600">Amber Harvey</td>
-                                    <td>
-                                        <a class="font-w600" data-toggle="modal" data-target="#modal-message" href="#">Update is available</a>
-                                        <div class="text-muted mt-5">An update is under way for your app..</div>
-                                    </td>
-                                    <td class="d-none d-xl-table-cell font-w600 font-size-sm text-muted">FRI</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">
-                                        <label class="css-control css-control-primary css-checkbox">
-                                            <input type="checkbox" class="css-control-input">
-                                            <span class="css-control-indicator"></span>
-                                        </label>
-                                    </td>
-                                    <td class="d-none d-sm-table-cell font-w600">Judy Ford</td>
-                                    <td>
-                                        <a class="font-w600" data-toggle="modal" data-target="#modal-message" href="#">New Sale!</a>
-                                        <div class="text-muted mt-5">You had a new sale and earned..</div>
-                                    </td>
-                                    <td class="d-none d-xl-table-cell font-w600 font-size-sm text-muted">THU</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">
-                                        <label class="css-control css-control-primary css-checkbox">
-                                            <input type="checkbox" class="css-control-input">
-                                            <span class="css-control-indicator"></span>
-                                        </label>
-                                    </td>
-                                    <td class="d-none d-sm-table-cell font-w600">Wayne Garcia</td>
-                                    <td>
-                                        <a class="font-w600" data-toggle="modal" data-target="#modal-message" href="#">Action Required for your account!</a>
-                                        <div class="text-muted mt-5">Your account is inactive for a long time and..</div>
-                                    </td>
-                                    <td class="d-none d-xl-table-cell font-w600 font-size-sm text-muted">MON</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">
-                                        <label class="css-control css-control-primary css-checkbox">
-                                            <input type="checkbox" class="css-control-input">
-                                            <span class="css-control-indicator"></span>
-                                        </label>
-                                    </td>
-                                    <td class="d-none d-sm-table-cell font-w600">Jack Estrada</td>
-                                    <td>
-                                        <a class="font-w600" data-toggle="modal" data-target="#modal-message" href="#">New Photo Pack!</a>
-                                        <div class="text-muted mt-5">Our new photo pack is available now! You..</div>
-                                    </td>
-                                    <td class="d-none d-xl-table-cell font-w600 font-size-sm text-muted">MON</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">
-                                        <label class="css-control css-control-primary css-checkbox">
-                                            <input type="checkbox" class="css-control-input">
-                                            <span class="css-control-indicator"></span>
-                                        </label>
-                                    </td>
-                                    <td class="d-none d-sm-table-cell font-w600">Helen Jacobs</td>
-                                    <td>
-                                        <a class="font-w600" data-toggle="modal" data-target="#modal-message" href="#">Product is released!</a>
-                                        <div class="text-muted mt-5">This is a notification about our new product..</div>
-                                    </td>
-                                    <td class="d-none d-xl-table-cell font-w600 font-size-sm text-muted">TUE</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">
-                                        <label class="css-control css-control-primary css-checkbox">
-                                            <input type="checkbox" class="css-control-input">
-                                            <span class="css-control-indicator"></span>
-                                        </label>
-                                    </td>
-                                    <td class="d-none d-sm-table-cell font-w600">Jack Greene</td>
-                                    <td>
-                                        <a class="font-w600" data-toggle="modal" data-target="#modal-message" href="#">Now on Sale!</a>
-                                        <div class="text-muted mt-5">Our Book is out! You can buy a copy and..</div>
-                                    </td>
-                                    <td class="d-none d-xl-table-cell font-w600 font-size-sm text-muted">WED</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">
-                                        <label class="css-control css-control-primary css-checkbox">
-                                            <input type="checkbox" class="css-control-input">
-                                            <span class="css-control-indicator"></span>
-                                        </label>
-                                    </td>
-                                    <td class="d-none d-sm-table-cell font-w600">Jack Greene</td>
-                                    <td>
-                                        <a class="font-w600" data-toggle="modal" data-target="#modal-message" href="#">Monthly Report</a>
-                                        <div class="text-muted mt-5">The monthly report you requested for..</div>
-                                    </td>
-                                    <td class="d-none d-xl-table-cell font-w600 font-size-sm text-muted">SAT</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">
-                                        <label class="css-control css-control-primary css-checkbox">
-                                            <input type="checkbox" class="css-control-input">
-                                            <span class="css-control-indicator"></span>
-                                        </label>
-                                    </td>
-                                    <td class="d-none d-sm-table-cell font-w600">Judy Ford</td>
-                                    <td>
-                                        <a class="font-w600" data-toggle="modal" data-target="#modal-message" href="#">Trial Started!</a>
-                                        <div class="text-muted mt-5">You 30-day trial has now started and..</div>
-                                    </td>
-                                    <td class="d-none d-xl-table-cell font-w600 font-size-sm text-muted">SUN</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <!-- END Messages -->
+            <div class="col-6">
+                <div class="block">
+                    <div class="block-content block-content-full">
+                        {{-- <i class="si si-game-controller fa-2x text-body-bg-dark"></i> --}}
+                        <br>
+                        <div class="row pt-10 text-center">
+                            <div class="col-xl-6 col-12">
+                                <div class="font-size-sm font-w600 text-uppercase text-muted">Quiz Akan Dimulai Dalam</div>
+                                <div class="js-countdown mt-10"></div>
+                            </div>
+                            <div class="col-xl-6 col-12">
+                                <div class="pt-20">
+                                    <button class="btn btn-hero btn-lg btn-danger" disabled>QUIZ BELUM DIMULAI</button>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
                     </div>
                 </div>
-                <!-- END Message List -->
             </div>
         </div>
     </div>
     <!-- END Page Content -->
+@endsection
+
+@section('custom-js')
+    <script src="{{ url('codebase/src/assets/js/plugins/jquery-countdown/jquery.countdown.min.js') }}"></script>
+
+    <script>
+        /*
+        *  Document   : op_coming_soon.js
+        *  Author     : pixelcave
+        *  Description: Custom JS code used in Coming Soon Page
+        */
+
+        var OpComingSoon = function() {
+            // Init Countdown.js, for more examples you can check out https://github.com/hilios/jQuery.countdown
+            var initCounter = function(){
+                jQuery('.js-countdown').countdown('2019/05/09', function(event) {
+                    jQuery(this).html(event.strftime('<div class="row items-push text-center">'
+                            + '<div class="col-6 col-sm-3"><div class="font-size-h1 font-w700">%-D</div><div class="font-size-xs font-w700-op">HARI</div></div>'
+                            + '<div class="col-6 col-sm-3"><div class="font-size-h1 font-w700">%H</div><div class="font-size-xs font-w700-op">JAM</div></div>'
+                            + '<div class="col-6 col-sm-3"><div class="font-size-h1 font-w700">%M</div><div class="font-size-xs font-w700-op">MENIT</div></div>'
+                            + '<div class="col-6 col-sm-3"><div class="font-size-h1 font-w700">%S</div><div class="font-size-xs font-w700-op">DETIK</div></div>'
+                            + '</div>'
+                    ));
+                });
+            };
+
+            return {
+                init: function () {
+                    // Init Countdown
+                    initCounter();
+                }
+            };
+        }();
+
+        // Initialize when page loads
+        jQuery(function(){ OpComingSoon.init(); });
+    </script>
 @endsection
