@@ -56,3 +56,6 @@ Route::get('/setting', function () {
 Route::get('/quiz-ce', function () {
     return view('quiz.create');
 });
+
+
+Route::get('/siswa/ujian', 'UjianController@index');
