@@ -18,7 +18,7 @@
             <!-- User Dropdown -->
             <div class="btn-group" role="group">
                 <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    USERNAME<i class="fa fa-angle-down ml-5"></i>
+                    NAMA MAHASISWA<i class="fa fa-angle-down ml-5"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right min-width-150" aria-labelledby="page-header-user-dropdown">
                     {{-- <a class="dropdown-item" href="be_pages_generic_profile.html">
@@ -51,7 +51,7 @@
             <!-- Toggle Side Overlay -->
             <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
             <button type="button" class="btn btn-circle btn-dual-secondary" data-toggle="layout" data-action="side_overlay_toggle">
-                <i class="fa fa-tasks"></i>
+                <i class="fa fa-arrow-left"></i>
             </button>
             <!-- END Toggle Side Overlay -->
         </div>
