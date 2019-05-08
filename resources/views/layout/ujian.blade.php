@@ -6,16 +6,16 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 
-        <title>Codebase - Bootstrap 4 Admin Template &amp; UI Framework</title>
+        <title>Quiz NOW!</title>
 
-        <meta name="description" content="Codebase - Bootstrap 4 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
+        <meta name="description" content="Quiz NOW! created by pixelcave and published on Themeforest">
         <meta name="author" content="pixelcave">
         <meta name="robots" content="noindex, nofollow">
 
         <!-- Open Graph Meta -->
-        <meta property="og:title" content="Codebase - Bootstrap 4 Admin Template &amp; UI Framework">
+        <meta property="og:title" content="Quiz NOW!">
         <meta property="og:site_name" content="Codebase">
-        <meta property="og:description" content="Codebase - Bootstrap 4 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
+        <meta property="og:description" content="Quiz NOW! created by pixelcave and published on Themeforest">
         <meta property="og:type" content="website">
         <meta property="og:url" content="">
         <meta property="og:image" content="">
@@ -34,6 +34,7 @@
         <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
         <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/flat.min.css"> -->
         <!-- END Stylesheets -->
+        @yield('custom-css')
     </head>
     <body>
         <!-- Page Container -->
@@ -78,9 +79,11 @@
             'main-content-boxed'                        Full width Main Content with a specific maximum width (screen width > 1200px)
             'main-content-narrow'                       Full width Main Content with a percentage width (screen width > 1200px)
         -->
-        <div id="page-container" class="sidebar-o side-scroll page-header-modern">
+        <div id="page-container" class="sidebar-mini sidebar-o sidebar-inverse side-scroll page-header-fixed page-header-glass page-header-inverse main-content-narrow">
+            @include('includes.overlay_ujian')
+
             @include('includes.sidebar_ujian')
-            
+
             @include('includes.header_ujian')
 
             <!-- Main Container -->
@@ -103,12 +106,11 @@
         <script src="{{ url('codebase/src/assets/js/core/js.cookie.min.js') }}"></script>
         <script src="{{ url('codebase/src/assets/js/codebase.js') }}"></script>
 
+        <!-- Page JS Plugins -->
+        <script src="{{ url('codebase/src/assets/js/plugins/chartjs/Chart.bundle.min.js') }}"></script>
+
         <!-- Page JS Code -->
-        <script>
-            jQuery(function () {
-                // Init page helpers (Table Tools helper)
-                Codebase.helpers('table-tools');
-            });
-        </script>
+        <script src="{{ url('codebase/src/assets/js/pages/be_pages_dashboard.js') }}"></script>
+        @yield('custom-js')
     </body>
 </html>
