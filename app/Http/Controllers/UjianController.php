@@ -8,6 +8,12 @@ class UjianController extends Controller
 {
     public function index()
     {
-        return view('ujian.index');
+        $user = auth()->user();
+
+        $data = [
+            'user' => $user
+        ];
+
+        return view('ujian.index', $data);
     }
 }

@@ -18,7 +18,7 @@
             <!-- User Dropdown -->
             <div class="btn-group" role="group">
                 <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    NAMA MAHASISWA<i class="fa fa-angle-down ml-5"></i>
+                    {{ $user->name }}<i class="fa fa-angle-down ml-5"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right min-width-150" aria-labelledby="page-header-user-dropdown">
                     {{-- <a class="dropdown-item" href="be_pages_generic_profile.html">
@@ -41,8 +41,11 @@
                     <!-- END Side Overlay -->
 
                     <div class="dropdown-divider"></div> --}}
-                    <a class="dropdown-item" href="{{ url('/logout') }}">
+                    <a class="dropdown-item" href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                         <i class="si si-logout mr-5"></i> Sign Out
+                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
                     </a>
                 </div>
             </div>
