@@ -27,9 +27,9 @@
                         <tr>
                             <th>Nama Paket</th>
                             <th class="d-none d-sm-table-cell">Nama Pelajaran</th>
-                            <th class="d-none d-sm-table-cell">Action</th>
-                            <th></th>
-                            <th></th>
+                            <th class="d-none d-sm-table-cell text-center">Action</th>
+                            {{-- <th></th>
+                            <th></th> --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -37,12 +37,12 @@
                         <tr>
                             <td class="font-w600">{{$paket_soal->nama_paket}}</td>
                             <td class="d-none d-sm-table-cell">{{$paket_soal->pelajaran->nama_pelajaran}}</td>
-                            <td>
+                            <td class="text-center">
                                 <a href="{{route('paket_soal.edit',$paket_soal->id)}}" class="btn btn-warning">Edit</a>
                                 <button type="button" value="{{route('paket_soal.destroy',$paket_soal->id)}}" class="btn btn-danger js-swal-confirm">Delete</button>
                             </td>
-                            <td></td>
-                            <td></td>
+                            {{-- <td></td>
+                            <td></td> --}}
                         </tr>
                         @endforeach
                     </tbody>

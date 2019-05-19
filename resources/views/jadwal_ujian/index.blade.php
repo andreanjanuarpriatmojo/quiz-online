@@ -29,7 +29,7 @@
                             <th class="d-none d-sm-table-cell">Nama Pelajaran</th>
                             <th class="d-none d-sm-table-cell">Waktu Mulai</th>
                             <th class="d-none d-sm-table-cell">Waktu Selesai</th>
-                            <th class="d-none d-sm-table-cell">Action</th>
+                            <th class="d-none d-sm-table-cell text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,7 +39,7 @@
                             <td class="d-none d-sm-table-cell">{{$jadwal_ujian->pelajaran->nama_pelajaran}}</td>
                             <td class="d-none d-sm-table-cell">{{$jadwal_ujian->waktu_mulai}}</td>
                             <td class="d-none d-sm-table-cell">{{$jadwal_ujian->waktu_selesai}}</td>
-                            <td>
+                            <td class="text-center">
                                 <a href="{{route('jadwal_ujian.edit',$jadwal_ujian->id)}}" class="btn btn-warning">Edit</a>
                                 <button type="button" value="{{route('jadwal_ujian.destroy',$jadwal_ujian->id)}}" class="btn btn-danger js-swal-confirm">Delete</button>
                             </td>

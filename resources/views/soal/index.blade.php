@@ -28,8 +28,8 @@
                             <th>Nama Pelajaran</th>
                             <th class="d-none d-sm-table-cell">Nama Paket</th>
                             <th class="d-none d-sm-table-cell">Deskripsi Soal</th>
-                            <th class="d-none d-sm-table-cell">Action</th>
-                            <th></th>
+                            <th class="d-none d-sm-table-cell text-center">Action</th>
+                            {{-- <th></th> --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -38,11 +38,11 @@
                             <td class="font-w600">{{$soal->paketsoal->pelajaran->nama_pelajaran}}</td>
                             <td class="d-none d-sm-table-cell">{{$soal->paketsoal->nama_paket}}</td>
                             <td class="d-none d-sm-table-cell">{{substr($soal->deskripsi_soal,3,22)}}</td>
-                            <td>
+                            <td class="text-center">
                                 <a href="{{route('soal.edit',$soal->id)}}" class="btn btn-warning">Edit</a>
                                 <button type="button" value="{{route('soal.destroy',$soal->id)}}" class="btn btn-danger js-swal-confirm">Delete</button>
                             </td>
-                            <td></td>
+                            {{-- <td></td> --}}
                         </tr>
                         @endforeach
                     </tbody>
