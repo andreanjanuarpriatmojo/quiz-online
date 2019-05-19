@@ -78,20 +78,30 @@
                     </div>
                     <br>
                 </div>
+                <div class="block text-center">
+                    <div class="block-content">
+                        <label class="css-control css-control-warning css-checkbox">
+                            <input type="checkbox" class="css-control-input">
+                            <span class="css-control-indicator"></span> Ragu-Ragu
+                        </label>
+                        <br>
+                        <br>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-12 text-center">
-                <nav class="clearfix push">
-                    <button type="button" class="btn btn-primary float-right text-white" data-toggle="tooltip" title="Next">
-                            Soal Selanjutnya <i class="fa fa-chevron-right fa-fw"></i>
-                    </button>
-                    <label class="css-control css-control-warning css-checkbox">
-                        <input type="checkbox" class="css-control-input">
-                        <span class="css-control-indicator"></span> Ragu Ragu
-                    </label>
-                    <button type="button" class="btn btn-primary float-left text-white" data-toggle="tooltip" title="Previous">
-                        <i class="fa fa-chevron-left fa-fw"></i> Soal Sebelumnya
-                    </button>
-                </nav>
+            <div class="col-md-12">
+                <div class="block">
+                    <div class="block-content">
+                        <nav class="clearfix push">
+                            <button type="button" class="btn btn-primary float-right" data-toggle="tooltip" title="Next">
+                                    Soal Selanjutnya <i class="fa fa-chevron-right fa-fw"></i>
+                            </button>
+                            <button type="button" class="btn btn-primary float-left" data-toggle="tooltip" title="Previous">
+                                <i class="fa fa-chevron-left fa-fw"></i> Soal Sebelumnya
+                            </button>
+                        </nav>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
