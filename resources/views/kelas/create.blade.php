@@ -1,5 +1,5 @@
 @extends('layout.app')
-@section('title','Create Pelajaran')
+@section('title','Create Kelas')
 @section('additional_css')
 
 @endsection

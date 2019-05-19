@@ -93,8 +93,6 @@ class PesertaController extends Controller
      */
     public function destroy($kelas_id,$user_id)
     {
-        DB::enableQueryLog();
         $error = DB::delete("Delete from user_kelas where user_id = '$user_id' and kelas_id = '$kelas_id'");
-        dd(DB::getQueryLog());
     }
 }
