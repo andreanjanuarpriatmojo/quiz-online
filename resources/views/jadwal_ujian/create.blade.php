@@ -1,7 +1,7 @@
 @extends('layout.app')
 @section('title','Create Jadwal Ujian')
 @section('additional_css')
-
+<link rel="stylesheet" href="{{asset('codebase/src/assets/css/tempusdominus-bootstrap-4.min.css')}}" />
 @endsection
 @section('content')
 <!-- Main Container -->
@@ -42,12 +42,12 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-material">
-                                <input type="datetime-local" class="form-control" id="material-text" name="waktu_mulai" required>
-                                <label for="material-text">Waktu Mulai</label>
+                                <input type="text" class="form-control datetimepicker-input" name="waktu_selesai"  id="datetimepicker1" data-toggle="datetimepicker" data-target="#datetimepicker1" required>
+                                <label for="datetimepicker1">Waktu Mulai</label>
                             </div>
                             <div class="form-material">
-                                <input type="datetime-local" class="form-control" id="material-text" name="waktu_selesai" required>
-                                <label for="material-text">Waktu Selesai</label>
+                                <input type="text" class="form-control datetimepicker-input" name="waktu_selesai"  id="datetimepicker2" data-toggle="datetimepicker" data-target="#datetimepicker2" required>
+                                <label for="datetimepicker2">Waktu Selesai</label>
                             </div>
                         </div>
                     </div>
@@ -60,5 +60,12 @@
 <!-- END Main Container -->
 @endsection
 @section('additional_js')
-
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker1').datetimepicker();
+        $('#datetimepicker2').datetimepicker();
+    });
+</script>
+<script src="{{asset('codebase/src/assets/js/moment.js')}}"></script>
+<script src="{{asset('codebase/src/assets/js/tempusdominus-bootstrap-4.min.js')}}"></script>
 @endsection

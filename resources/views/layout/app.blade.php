@@ -309,6 +309,7 @@
 
         <!-- Page JS Plugins -->
         <script src="{{asset('codebase/src/assets/js/plugins/jquery-validation/jquery.validate.min.js')}}"></script>
+        <script src="{{asset('codebase/src/assets/js/plugins/jquery-validation/jquery.validate.min.js')}}"></script>
 
         <!-- Page JS Code -->
         <script src="{{asset('codebase/src/assets/js/pages/op_auth_signin.js')}}"></script>
