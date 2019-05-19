@@ -13,11 +13,16 @@
 
 Route::get('/', 'HomeController@dashboard')->name('home');
 Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
-Route::resource('user', 'UserController')->middleware('checkRole:admin');;
+Route::resource('user', 'UserController')->middleware('checkRole:admin');
+Route::resource('kelas', 'KelasController')->middleware('checkRole:admin');
+Route::get('/peserta/{kelas_id}', 'PesertaController@index')->name('peserta.index')->middleware('checkRole:admin');
+Route::delete('/peserta/destroy/{kelas_id}/{user_id}', 'PesertaController@destroy')->name('peserta.destroy')->middleware('checkRole:admin');
+Route::post('/peserta', 'PesertaController@store')->name('peserta.store')->middleware('checkRole:admin');
 Route::resource('pelajaran', 'PelajaranController')->middleware('checkRole:adminGuru');
 Route::resource('paket_soal', 'PaketSoalController')->middleware('checkRole:adminGuru');
 Route::resource('soal', 'SoalController')->middleware('checkRole:adminGuru');
 Route::resource('jadwal_ujian', 'JadwalUjianController')->middleware('checkRole:adminGuru');
+
 
 Route::get('/login', function () {
     return view('auth.login');

@@ -202,9 +202,12 @@
                                     <a class="{{ Request::is('dashboard') ? 'active' : '' }}" href="{{route('dashboard')}}"><i class="si si-cup"></i><span class="sidebar-mini-hide">Dashboard</span></a>
                                 </li>
                                 @if(Auth::user()->role == 'admin')
-                                <li class="nav-main-heading"><span class="sidebar-mini-visible">User</span><span class="sidebar-mini-hidden">User</span></li>
+                                <li class="nav-main-heading"><span class="sidebar-mini-visible">User Kelas</span><span class="sidebar-mini-hidden">User Kelas</span></li>
                                 <li>
                                     <a class="{{ Request::is('user') ? 'active' : '' }}" href="{{route('user.index')}}"><i class="si si-user"></i><span class="sidebar-mini-hide">Manajemen User</span></a>
+                                </li>
+                                <li>
+                                    <a class="{{ Request::is('kelas') ? 'active' : '' }}" href="{{route('kelas.index')}}"><i class="si si-screen-desktop"></i><span class="sidebar-mini-hide">Kelas</span></a>
                                 </li>
                                 @endif
                                 @if(Auth::user()->role == 'admin' || Auth::user()->role == 'guru')

@@ -41,4 +41,9 @@ class User extends Authenticatable
     {
         return $this->role == 'siswa';
     }
+
+    public function Kelas()
+    {
+        return $this->belongsToMany(Kelas::class, 'user_kelas');
+    }
 }
