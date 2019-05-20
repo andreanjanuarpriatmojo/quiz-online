@@ -5,6 +5,8 @@ use App\User;
 use App\Pelajaran;
 use App\PaketSoal;
 use App\Soal;
+use App\UserKelas;
+use App\Kelas;
 
 class BaseSeeder extends Seeder
 {
@@ -29,12 +31,24 @@ class BaseSeeder extends Seeder
         $user->name = 'guru';
         $user->save();
 
-        $user = new User;
-        $user->username = 'siswa';
-        $user->password = bcrypt('siswa');
-        $user->role = 'siswa';
-        $user->name = 'siswa';
-        $user->save();
+        $kelas = new Kelas;
+        $kelas->nama_kelas = 'Kelas Dasar Pemrograman A';
+        $kelas->save();
+
+        for ($i=1; $i <= 5 ; $i++) 
+        { 
+            $user = new User;
+            $user->username = 'siswa'.$i;
+            $user->password = bcrypt('siswa'.$i);
+            $user->role = 'siswa';
+            $user->name = 'siswa'.$i;
+            $user->save();
+
+            $user_kelas = new UserKelas;
+            $user_kelas->user_id = $user->id;
+            $user_kelas->kelas_id = $kelas->id;
+            $user_kelas->save();
+        }
 
         $pelajaran = new Pelajaran;
         $pelajaran->nama_pelajaran = 'Dasar Pemrograman';
