@@ -16,6 +16,7 @@ class CreateJadwalUjiansTable extends Migration
         Schema::create('jadwal_ujians', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('pelajaran_id');
+            $table->integer('paket_soal_id');
             $table->string('nama_ujian');
             $table->datetime('waktu_mulai');
             $table->datetime('waktu_selesai');

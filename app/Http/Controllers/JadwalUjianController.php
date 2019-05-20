@@ -9,6 +9,7 @@ use App\Pelajaran;
 use Carbon\Carbon;
 use App\UjianKelas;
 use App\Kelas;
+use App\PaketSoal;
 
 class JadwalUjianController extends Controller
 {
@@ -45,6 +46,7 @@ class JadwalUjianController extends Controller
         $validator = Validator::make(request()->all(), [
             'nama_ujian' => 'required|max:100',
             'pelajaran_id' => 'required',
+            'paket_id' => 'required',
             'waktu_mulai' => 'required',
             'waktu_selesai' => 'required',
         ]);
@@ -55,6 +57,7 @@ class JadwalUjianController extends Controller
             $jadwal_ujian = JadwalUjian::create([
                 'nama_ujian' => $request['nama_ujian'],
                 'pelajaran_id' => $request['pelajaran_id'],
+                'paket_soal_id' => $request['paket_id'],
                 'waktu_mulai' => Carbon::parse($request['waktu_mulai']),
                 'waktu_selesai' => Carbon::parse($request['waktu_selesai']),
             ]);
@@ -84,6 +87,7 @@ class JadwalUjianController extends Controller
     {
         $data['jadwal_ujian'] = JadwalUjian::find($id);
         $data['pelajarans'] = Pelajaran::all();
+        $data['pakets'] = PaketSoal::where('pelajaran_id', $data['jadwal_ujian']->pelajaran_id)->get();
         return view('jadwal_ujian.edit',$data);
     }
 
@@ -144,5 +148,13 @@ class JadwalUjianController extends Controller
         $jadwal->KelasPeserta()->sync($request->input('peserta'));
 
         return redirect('/jadwal_ujian');
+    }
+
+    public function getPaket(Request $request)
+    {
+        // dd('asdasd');
+        $pelajaran = Pelajaran::findOrFail($request->pelajaran_id);
+        $pakets = $pelajaran->PaketSoals;
+        return response()->json($pakets);
     }
 }

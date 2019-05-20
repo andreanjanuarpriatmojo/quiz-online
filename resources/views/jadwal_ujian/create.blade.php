@@ -28,13 +28,19 @@
                                 <label for="material-text">Nama Ujian</label>
                             </div>
                             <div class="form-material">
-                                <select class="form-control" name="pelajaran_id" required>
+                                <select class="form-control" name="pelajaran_id" id="dropdown_pelajaran" required>
                                     <option value="" selected disabled><-- Pilih Pelajaran--></option>
                                     @foreach($pelajarans as $pelajaran)
                                     <option value="{{$pelajaran->id}}">{{$pelajaran->nama_pelajaran}}</option>
                                     @endforeach
                                 </select>
                                 <label for="material-text">Pelajaran</label>
+                            </div>
+                            <div class="form-material">
+                                <select class="form-control" name="paket_id" id="dropdown_paket" required disabled>
+                                    <option value="" selected disabled><-- Pilih Paket Soal--></option>
+                                </select>
+                                <label for="material-text">Paket Soal</label>
                             </div>
                             <div class="form-material">
                                 <button type="submit" class="btn btn-alt-primary">Simpan Data</button>
@@ -64,6 +70,29 @@
     $(function () {
         $('#datetimepicker1').datetimepicker();
         $('#datetimepicker2').datetimepicker();
+    });
+
+    $("#dropdown_pelajaran").change(function(){
+        $.ajax({
+            url: '{{ url('jadwal_ujian/ajax/get_paket') }}',
+            type: 'GET',
+            data: {
+                'pelajaran_id': $(this).val()
+            },
+            dataType: 'json',
+            error: function(){
+                alert('error');
+            },
+            success: function(data){
+                $("#dropdown_paket").prop('disabled', false);
+                $("#dropdown_paket").empty();
+                $("#dropdown_paket").append('<option value="" selected disabled><-- Pilih Paket Soal--></option>');
+                $.each(data, function(index, val){
+                    var html = '<option value="'+val.id+'">'+val.nama_paket+'</option>';
+                    $("#dropdown_paket").append(html);
+                });
+            }
+        })
     });
 </script>
 <script src="{{asset('codebase/src/assets/js/moment.js')}}"></script>

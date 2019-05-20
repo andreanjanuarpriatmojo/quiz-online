@@ -24,6 +24,7 @@ Route::resource('soal', 'SoalController')->middleware('checkRole:adminGuru');
 Route::resource('jadwal_ujian', 'JadwalUjianController')->middleware('checkRole:adminGuru');
 Route::get('/jadwal_ujian/{id}/peserta', 'JadwalUjianController@peserta')->middleware('checkRole:adminGuru');
 Route::post('/jadwal_ujian/ganti_peserta', 'JadwalUjianController@ganti_peserta')->middleware('checkRole:adminGuru');
+Route::get('/jadwal_ujian/ajax/get_paket', 'JadwalUjianController@getPaket')->middleware('checkRole:adminGuru');
 
 
 Route::get('/login', function () {
