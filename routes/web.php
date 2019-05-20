@@ -88,6 +88,7 @@ Route::get('/quiz-ce', function () {
 
 Route::get('/siswa/ujian', 'UjianController@index');
 Route::get('/siswa/ujian/{ujian_siswa_id}', 'UjianController@getUjian');
+Route::post('siswa/ujian/submit_jawaban', 'UjianController@submitJawaban');
 
 Auth::routes();
 

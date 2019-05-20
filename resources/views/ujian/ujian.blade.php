@@ -16,10 +16,17 @@
                         {!! $soal->deskripsi_soal !!}
                         @foreach (json_decode($ujian_siswa->random_jawaban) as $jawaban)
                         <br>
-                        <label class="css-control css-control-secondary css-radio">
-                            <input type="radio" class="css-control-input" name="jawaban">
-                            <span class="css-control-indicator"></span> {!! $soal->{"pilihan_".$jawaban} !!}
-                        </label>
+                        <div class="row">
+                            <div class="col-1" style="max-width: 2%">
+                                <label class="css-control css-control-secondary css-radio">
+                                    <input type="radio" class="css-control-input jawaban" name="jawaban" value="{{ $jawaban }}" {{ $jawaban_siswa_nomer_ini == $jawaban ? 'checked' : '' }}>
+                                    <span class="css-control-indicator"></span>
+                                </label>
+                            </div>
+                            <div class="col-11">
+                                {!! $soal->{"pilihan_".$jawaban} !!}
+                            </div>
+                        </div>
                         @endforeach
                     </div>
                     <br>
@@ -39,22 +46,19 @@
                             @foreach (array_chunk(json_decode($ujian_siswa->random_soal), 5) as $ujian)
                             <div class="col-md-12">
                                 @foreach ($ujian as $uj)
-                                <a href="{{ url("siswa/ujian/$ujian_siswa->id?no=$nomor") }}" class="btn btn-sm btn-circle {{ $nomor == request('no') ? 'btn-alt-primary' : 'btn-alt-secondary' }} mr-5 mb-5">{{ $nomor++ }}</a>
+                                    @if ($nomor == request('no'))
+                                    {{-- if current nomor maka biru --}}
+                                    <a href="{{ url("siswa/ujian/$ujian_siswa->id?no=$nomor") }}" class="btn btn-sm btn-circle btn-alt-primary mr-5 mb-5" id="navigasi_{{ $nomor }}">{{ $nomor++ }}</a>
+                                    @elseif($jawaban_siswa[$nomor-1] != '')
+                                    {{-- if sudah dijawab maka ijo --}}
+                                    <a href="{{ url("siswa/ujian/$ujian_siswa->id?no=$nomor") }}" class="btn btn-sm btn-circle btn-alt-success mr-5 mb-5" id="navigasi_{{ $nomor }}">{{ $nomor++ }}</a>
+                                    @else
+                                    {{-- if belum dijawab maka abu --}}
+                                    <a href="{{ url("siswa/ujian/$ujian_siswa->id?no=$nomor") }}" class="btn btn-sm btn-circle btn-alt-secondary mr-5 mb-5" id="navigasi_{{ $nomor }}">{{ $nomor++ }}</a>
+                                    @endif
                                 @endforeach
                             </div>
                             @endforeach
-                            {{-- <div class="col-md-12">
-                            @for ($i = 1; $i <= 10; $i++)
-                                <a href="{{ url("siswa/ujian/$ujian_siswa->id?no=$i") }}" class="btn btn-sm btn-circle btn-alt-secondary mr-5 mb-5">
-                                    {{ $i }}
-                                </a>
-                                @if ($i % 5 == 0)
-                                </div>
-                                @if ($i != $total_soal-1)
-                                <div class="col-md-12">
-                                @endif
-                                @endif
-                            @endfor --}}
                         </div>
                     </div>
                     <br>
@@ -96,7 +100,7 @@
 
 @section('custom-js')
     <script src="{{ url('codebase/src/assets/js/plugins/jquery-countdown/jquery.countdown.min.js') }}"></script>
-
+    
     <script>
         /*
         *  Document   : op_coming_soon.js
@@ -122,5 +126,27 @@
 
         // Initialize when page loads
         jQuery(function(){ OpComingSoon.init(); });
+    </script>
+
+    <script>
+        $(".jawaban").change(function(){
+            $.ajax({
+                url: '{{ url('siswa/ujian/submit_jawaban') }}',
+                type: 'POST',
+                dataType: 'json',
+                data : {
+                    '_token': '{{ csrf_token() }}',
+                    'ujian_siswa_id': {{ $ujian_siswa->id }},
+                    'soal': {{ request('no') }},
+                    'jawaban': $(this).val()
+                },
+                error: function(){
+                    alert('Terjadi kesalahan. Coba logout lalu login lagi');
+                },
+                success: function(data){
+                    console.log('ok');
+                } 
+            });
+        });
     </script>
 @endsection
