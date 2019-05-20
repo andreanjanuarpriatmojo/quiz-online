@@ -3,22 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class UjianController extends Controller
 {
     public function index()
     {
         $user = auth()->user();
-        $next_ujian = $user->UjianSiswa()->first();
-
-        if($next_ujian)
+        $now = Carbon::now();
+        $current_ujian = $user->UjianSiswa()->where('waktu_mulai', '<', $now)->where('waktu_selesai', '>', $now)->orderBy('waktu_mulai', 'asc')->first();
+        // dd($current_ujian);
+        if($current_ujian)
         {
-            $next_ujian = $next_ujian->JadwalUjian;
+            $current_ujian = $current_ujian->JadwalUjian;
         }
-
         $data = [
             'user' => $user,
-            'next_ujian' => $next_ujian
+            'current_ujian' => $current_ujian
         ];
 
         return view('ujian.index', $data);

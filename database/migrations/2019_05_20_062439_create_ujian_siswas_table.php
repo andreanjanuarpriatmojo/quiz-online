@@ -20,6 +20,8 @@ class CreateUjianSiswasTable extends Migration
             $table->text('jawaban_siswa');
             $table->integer('user_id');
             $table->integer('jadwal_ujian_id');
+            $table->datetime('waktu_mulai');
+            $table->datetime('waktu_selesai');
             $table->timestamps();
         });
     }
