@@ -86,11 +86,9 @@ Route::get('/quiz-ce', function () {
     return view('quiz.create');
 });
 
-Route::get('/siswa/ujian/ambil', function () {
-    return view('ujian.ujian');
-});
-
 Route::get('/siswa/ujian', 'UjianController@index');
+Route::get('/siswa/ujian/{ujian_siswa_id}', 'UjianController@getUjian');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
