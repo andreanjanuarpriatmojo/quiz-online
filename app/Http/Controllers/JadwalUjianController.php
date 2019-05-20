@@ -10,6 +10,8 @@ use Carbon\Carbon;
 use App\UjianKelas;
 use App\Kelas;
 use App\PaketSoal;
+use App\UjianSiswa;
+use DB;
 
 class JadwalUjianController extends Controller
 {
@@ -136,6 +138,7 @@ class JadwalUjianController extends Controller
     {
         $ujian = JadwalUjian::findOrFail($id);
         $selected_kelas = UjianKelas::where('jadwal_ujian_id', $id)->get();
+        // dd($selected_kelas);
         $kelases = Kelas::all();
 
         return view('jadwal_ujian.peserta', compact('kelases', 'ujian', 'selected_kelas'));
@@ -144,10 +147,49 @@ class JadwalUjianController extends Controller
     public function ganti_peserta(Request $request)
     {
         // dd($request->all());
-        $jadwal = JadwalUjian::findOrFail($request->input('jadwal_ujian_id'));
-        $jadwal->KelasPeserta()->sync($request->input('peserta'));
 
-        return redirect('/jadwal_ujian');
+        DB::beginTransaction();
+
+        try {
+            $jadwal = JadwalUjian::findOrFail($request->input('jadwal_ujian_id'));
+            $jadwal->KelasPeserta()->sync($request->input('peserta'));
+            
+            UjianSiswa::where('jadwal_ujian_id', $jadwal->id)->delete();
+
+            $soal_id = $jadwal->PaketSoal->Soals->pluck('id')->toArray();
+            $template_jawaban = [1, 2, 3, 4];
+            $jawaban_kosong = array_fill(0, count($soal_id), '');
+
+            if($request->input('peserta'))
+            {
+                foreach ($request->input('peserta') as $kelas) 
+                {
+                    $kelas = Kelas::findOrFail($kelas);
+                    foreach ($kelas->User as $user) {
+                        shuffle($soal_id);
+                        shuffle($template_jawaban);
+
+                        $data_check = [
+                            'user_id' => $user->id,
+                            'jadwal_ujian_id' => $jadwal->id
+                        ];
+                        $data = [
+                            'random_soal' => json_encode($soal_id),
+                            'random_jawaban' => json_encode($template_jawaban),
+                            'jawaban_siswa' => json_encode($jawaban_kosong)
+                        ];
+
+                        $ujian_siswa = UjianSiswa::firstOrCreate($data_check, $data);
+                    }
+                }
+            }
+            DB::commit();
+            return redirect('/jadwal_ujian');
+        } catch (\Exception $e) {
+            DB::rollback();
+            dd($e);
+            throw $e;
+        }
     }
 
     public function getPaket(Request $request)

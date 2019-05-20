@@ -210,8 +210,8 @@
     //     $("#jadwal_ujian_id").val($(this).val());
     // });
     @foreach ($selected_kelas as $kelas)
-    $("#kelas_{{ $kelas->id }}").click();
-    $("#kelas_{{ $kelas->id }}").closest('tr').addClass('table-active');
+    $("#kelas_{{ $kelas->kelas_id }}").click();
+    $("#kelas_{{ $kelas->kelas_id }}").closest('tr').addClass('table-active');
     @endforeach
         
     $(function () {

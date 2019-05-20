@@ -10,8 +10,13 @@ class PaketSoal extends Model
         'nama_paket','pelajaran_id'
     ];
 
-     public function Pelajaran()
+    public function Pelajaran()
     {
         return $this->belongsTo('App\Pelajaran');
+    }
+
+    public function Soals()
+    {
+        return $this->hasMany('App\Soal');
     }
 }
