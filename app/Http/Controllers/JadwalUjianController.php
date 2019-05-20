@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\JadwalUjian;
 use App\Pelajaran;
+use Carbon\Carbon;
+use App\UjianKelas;
+use App\Kelas;
 
 class JadwalUjianController extends Controller
 {
@@ -52,8 +55,8 @@ class JadwalUjianController extends Controller
             $jadwal_ujian = JadwalUjian::create([
                 'nama_ujian' => $request['nama_ujian'],
                 'pelajaran_id' => $request['pelajaran_id'],
-                'waktu_mulai' => $request['waktu_mulai'],
-                'waktu_selesai' => $request['waktu_selesai'],
+                'waktu_mulai' => Carbon::parse($request['waktu_mulai']),
+                'waktu_selesai' => Carbon::parse($request['waktu_selesai']),
             ]);
             if($jadwal_ujian)return redirect()->route('jadwal_ujian.index')->withSuccess('Data Berhasil Ditambahkan');
             else return redirect()->back()->withErrors('Data Gagal Ditambahkan');
@@ -123,5 +126,23 @@ class JadwalUjianController extends Controller
     {
         $data = JadwalUjian::find($id);
         $data->delete();
+    }
+
+    public function peserta($id)
+    {
+        $ujian = JadwalUjian::findOrFail($id);
+        $selected_kelas = UjianKelas::where('jadwal_ujian_id', $id)->get();
+        $kelases = Kelas::all();
+
+        return view('jadwal_ujian.peserta', compact('kelases', 'ujian', 'selected_kelas'));
+    }
+
+    public function ganti_peserta(Request $request)
+    {
+        // dd($request->all());
+        $jadwal = JadwalUjian::findOrFail($request->input('jadwal_ujian_id'));
+        $jadwal->KelasPeserta()->sync($request->input('peserta'));
+
+        return redirect('/jadwal_ujian');
     }
 }

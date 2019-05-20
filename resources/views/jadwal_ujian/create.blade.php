@@ -42,7 +42,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-material">
-                                <input type="text" class="form-control datetimepicker-input" name="waktu_selesai"  id="datetimepicker1" data-toggle="datetimepicker" data-target="#datetimepicker1" required autocomplete="off">
+                                <input type="text" class="form-control datetimepicker-input" name="waktu_mulai"  id="datetimepicker1" data-toggle="datetimepicker" data-target="#datetimepicker1" required autocomplete="off">
                                 <label for="datetimepicker1">Waktu Mulai</label>
                             </div>
                             <div class="form-material">

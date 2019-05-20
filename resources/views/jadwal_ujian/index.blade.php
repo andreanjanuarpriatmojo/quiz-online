@@ -42,6 +42,7 @@
                             <td class="text-center">
                                 <a href="{{route('jadwal_ujian.edit',$jadwal_ujian->id)}}" class="btn btn-warning">Edit</a>
                                 <button type="button" value="{{route('jadwal_ujian.destroy',$jadwal_ujian->id)}}" class="btn btn-danger js-swal-confirm">Delete</button>
+                                <a class="btn btn-info" href="{{ url("jadwal_ujian/$jadwal_ujian->id/peserta") }}">Kelas Peserta Ujian</button>
                             </td>
                         </tr>
                         @endforeach
@@ -51,6 +52,43 @@
         </div>
     </div>
     <!-- END Page Content -->
+
+    {{-- <!-- Fade In Modal -->
+    <div class="modal fade" id="kelas_modal" tabindex="-1" role="dialog" aria-labelledby="modal-fadein" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="block block-themed block-transparent mb-0">
+                    <div class="block-header bg-primary-dark">
+                        <h3 class="block-title">Terms &amp; Conditions</h3>
+                        <div class="block-options">
+                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                <i class="si si-close"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="block-content">
+                        <input type="hidden" id="jadwal_ujian_id" value="">
+                        <table class="table table-hover" id="peserta_datatable">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Kelas</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-alt-success" data-dismiss="modal">
+                        <i class="fa fa-check"></i> Perfect
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END Fade In Modal --> --}}
 </main>
 <!-- END Main Container -->
 @endsection
@@ -65,6 +103,32 @@
 <!-- Page JS Code -->
 <script src="{{asset('codebase/src/assets/js/pages/be_tables_datatables.js')}}"></script>
 <script type="text/javascript">
+    // $(".button_peserta").click(function(){
+    //     $("#jadwal_ujian_id").val($(this).val());
+    // });
+
+    // $("#peserta_datatable").dataTable({
+    //     serverSide: true,
+    //     processing: true,
+    //     ajax: {
+    //         url: "{{ url('jadwal_ujian/peserta/datatables') }}",
+    //         type: "POST",
+    //         "data": function (d) {
+    //             d._token = "{{ csrf_token() }}";
+    //             d.jadwal_ujian_id = $("#jadwal_ujian_id").val();
+    //         }
+    //     }
+    //     columns: [
+    //         { name: 'first_name' },
+    //         { name: 'last_name' },
+    //         { name: 'mobile' },
+    //         { name: 'email' },
+    //         { name: 'gender' },
+    //         { name: 'country' }
+    //     ],
+    // });
+
+
     // Init an example confirm alert on button click
     $('.js-swal-confirm').on('click', function(){
         var url = $(this).val()

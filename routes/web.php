@@ -22,6 +22,8 @@ Route::resource('pelajaran', 'PelajaranController')->middleware('checkRole:admin
 Route::resource('paket_soal', 'PaketSoalController')->middleware('checkRole:adminGuru');
 Route::resource('soal', 'SoalController')->middleware('checkRole:adminGuru');
 Route::resource('jadwal_ujian', 'JadwalUjianController')->middleware('checkRole:adminGuru');
+Route::get('/jadwal_ujian/{id}/peserta', 'JadwalUjianController@peserta')->middleware('checkRole:adminGuru');
+Route::post('/jadwal_ujian/ganti_peserta', 'JadwalUjianController@ganti_peserta')->middleware('checkRole:adminGuru');
 
 
 Route::get('/login', function () {
