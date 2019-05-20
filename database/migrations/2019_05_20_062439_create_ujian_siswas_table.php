@@ -14,12 +14,13 @@ class CreateUjianSiswasTable extends Migration
     public function up()
     {
         Schema::create('ujian_siswas', function (Blueprint $table) {
-            $table->increments('id');
+            $table->uuid('id');
             $table->text('random_soal');
             $table->string('random_jawaban');
             $table->text('jawaban_siswa');
             $table->integer('user_id');
             $table->integer('jadwal_ujian_id');
+            $table->string('status')->default('Created');
             $table->datetime('waktu_mulai');
             $table->datetime('waktu_selesai');
             $table->timestamps();

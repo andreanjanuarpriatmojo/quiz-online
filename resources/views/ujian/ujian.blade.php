@@ -1,5 +1,9 @@
 @extends('layout.ujian')
 
+@section('custom-css')
+<link rel="stylesheet" href="{{asset('codebase/src/assets/js/plugins/sweetalert2/sweetalert2.min.css')}}">
+@endsection
+
 @section('content')
     <div class="bg-dark" style="min-height:67px;">
     {{-- ini buat header biar bagus aja --}}
@@ -87,6 +91,11 @@
                             <a href="{{ url("siswa/ujian/$ujian_siswa->id?no=$next_number") }}" class="btn btn-primary float-right" data-toggle="tooltip" title="Next">
                                 Soal Selanjutnya <i class="fa fa-chevron-right fa-fw"></i>
                             </a>
+                            @else
+                            <button type="button" class="btn btn-danger float-right js-swal-confirm" data-toggle="tooltip" title="Next">Akhiri Quiz <i class="fa fa-chevron-right fa-fw"></i></button>
+                            {{-- <a href="{{ url("siswa/ujian/finish") }}" class="btn btn-danger float-right" data-toggle="tooltip" title="Next">
+                                Akhiri Quiz <i class="fa fa-chevron-right fa-fw"></i>
+                            </a> --}}
                             @endif
                         </nav>
                     </div>
@@ -100,7 +109,9 @@
 
 @section('custom-js')
     <script src="{{ url('codebase/src/assets/js/plugins/jquery-countdown/jquery.countdown.min.js') }}"></script>
-    
+    <script src="{{asset('codebase/src/assets/js/plugins/sweetalert2/es6-promise.auto.min.js')}}"></script>
+    <script src="{{asset('codebase/src/assets/js/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
+
     <script>
         /*
         *  Document   : op_coming_soon.js
@@ -136,7 +147,7 @@
                 dataType: 'json',
                 data : {
                     '_token': '{{ csrf_token() }}',
-                    'ujian_siswa_id': {{ $ujian_siswa->id }},
+                    'ujian_siswa_id': '{{ $ujian_siswa->id }}',
                     'soal': {{ request('no') }},
                     'jawaban': $(this).val()
                 },
@@ -146,6 +157,35 @@
                 success: function(data){
                     console.log('ok');
                 } 
+            });
+        });
+
+        // Init an example confirm alert on button click
+        $('.js-swal-confirm').on('click', function(){
+            var url = $(this).val()
+            console.log(url);
+            swal({
+                title: 'Apa anda yakin akan mengakhiri quiz?',
+                text: 'Anda tidak akan dapat mengerjakan quiz ini lagi!',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d26a5c',
+                confirmButtonText: 'Ya, akhiri quiz',
+                html: false,
+                preConfirm: function() {
+                    return new Promise(function (resolve) {
+                        setTimeout(function () {
+                            resolve();
+                        }, 50);
+                    });
+                }
+            }).then(function(result){
+                if (result.value) {
+                    window.location.href = '{{ url("siswa/ujian/$ujian_siswa->id/finish") }}';
+                    // result.dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
+                } else if (result.dismiss === 'cancel') {
+                    swal('Cancelled', 'Silahkan lanjutkan ujian anda :)', 'success');
+                }
             });
         });
     </script>

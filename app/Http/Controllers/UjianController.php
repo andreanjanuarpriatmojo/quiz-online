@@ -22,6 +22,7 @@ class UjianController extends Controller
         $data = [
             'user' => $user,
             'current_ujian' => $current_jadwal_ujian,
+            'current_ujian_siswa' => $current_ujian_siswa,
             'ujian_siswa_id' => $current_ujian_siswa->id
         ];
 
@@ -42,7 +43,7 @@ class UjianController extends Controller
         $jawaban_siswa_nomer_ini = $jawaban_siswa[$arr_index];
 
         $soal = Soal::findOrFail($current_soal_id);
-        $total_soal = count($random_jawaban);
+        $total_soal = count($random_soal);
         // dd($jawaban_siswa[$no] != '');
         $data = [
             'ujian_siswa' => $ujian_siswa,
@@ -69,5 +70,14 @@ class UjianController extends Controller
         $ujian_siswa->save();
 
         return response()->json('ok');
+    }
+
+    public function finish($ujian_siswa_id)
+    {
+        $ujian_siswa = UjianSiswa::findOrFail($ujian_siswa_id);
+        $ujian_siswa->status = 'Finished';
+        $ujian_siswa->save();
+
+        return view('ujian.finished');
     }
 }

@@ -12,6 +12,7 @@ use App\Kelas;
 use App\PaketSoal;
 use App\UjianSiswa;
 use DB;
+use Uuid;
 
 class JadwalUjianController extends Controller
 {
@@ -189,6 +190,7 @@ class JadwalUjianController extends Controller
                             'jadwal_ujian_id' => $jadwal->id
                         ];
                         $data = [
+                            'id' => Uuid::generate(),
                             'random_soal' => json_encode($soal_id),
                             'random_jawaban' => json_encode($template_jawaban),
                             'jawaban_siswa' => json_encode($jawaban_kosong),

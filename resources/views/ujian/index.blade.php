@@ -84,9 +84,13 @@
                                 <div class="pt-20">
                                     @if ($current_ujian)
                                         @if ($current_ujian->ujianIsRunning())
-                                        <a href="{{ url("siswa/ujian/$ujian_siswa_id?no=1") }}" class="btn btn-hero btn-lg btn-danger">ENTER QUIZ NOW!</a>
+                                            @if ($current_ujian_siswa->status == 'Finished')
+                                            <button class="btn btn-hero btn-lg btn-danger" disabled>QUIZ TELAH DIAKHIRI</button>
+                                            @else
+                                            <a href="{{ url("siswa/ujian/$ujian_siswa_id?no=1") }}" class="btn btn-hero btn-lg btn-danger">ENTER QUIZ NOW!</a>
+                                            @endif
                                         @else
-                                        <button class="btn btn-hero btn-lg btn-danger" disabled>QUIZ BELUM DIMULAI</button>
+                                            <button class="btn btn-hero btn-lg btn-danger" disabled>QUIZ BELUM DIMULAI</button>
                                         @endif
                                     @else
                                         <button class="btn btn-hero btn-lg btn-danger" disabled>TIDAK ADA QUIZ YANG ANDA IKUTI</button>
