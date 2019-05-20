@@ -71,8 +71,12 @@
 @section('additional_js')
 <script type="text/javascript">
     $(function () {
-        $('#datetimepicker1').datetimepicker();
-        $('#datetimepicker2').datetimepicker();
+        $('#datetimepicker1').datetimepicker({
+            format: 'YYYY-MM-DD hh:mm:ss'
+        });
+        $('#datetimepicker2').datetimepicker({
+            format: 'YYYY-MM-DD hh:mm:ss'
+        });
     });
 
     $("#dropdown_pelajaran").change(function(){

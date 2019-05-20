@@ -28,8 +28,8 @@
                             <th>Nama Paket</th>
                             <th class="d-none d-sm-table-cell">Nama Pelajaran</th>
                             <th class="d-none d-sm-table-cell text-center">Action</th>
-                            {{-- <th></th>
-                            <th></th> --}}
+                            <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,8 +41,8 @@
                                 <a href="{{route('paket_soal.edit',$paket_soal->id)}}" class="btn btn-warning">Edit</a>
                                 <button type="button" value="{{route('paket_soal.destroy',$paket_soal->id)}}" class="btn btn-danger js-swal-confirm">Delete</button>
                             </td>
-                            {{-- <td></td>
-                            <td></td> --}}
+                            <td></td>
+                            <td></td>
                         </tr>
                         @endforeach
                     </tbody>
