@@ -112,13 +112,28 @@ class JadwalUjianController extends Controller
             return redirect()->back()->withErrors($validator->errors());
         }
         else{
-            $jadwal_ujian = JadwalUjian::find($id);
-            $jadwal_ujian->nama_ujian = $request['nama_ujian'];
-            $jadwal_ujian->pelajaran_id = $request['pelajaran_id'];
-            $jadwal_ujian->waktu_mulai = Carbon::parse($request['waktu_mulai'], 'WIB');
-            $jadwal_ujian->waktu_selesai = Carbon::parse($request['waktu_selesai'], 'WIB');
-            if($jadwal_ujian->save())return redirect()->route('jadwal_ujian.index')->withSuccess('Data Berhasil Dirubah');
-            else return redirect()->back()->withErrors('Data Gagal Ditambahkan');
+            DB::beginTransaction();
+
+            try {
+                $jadwal_ujian = JadwalUjian::find($id);
+                $jadwal_ujian->nama_ujian = $request['nama_ujian'];
+                $jadwal_ujian->pelajaran_id = $request['pelajaran_id'];
+                $jadwal_ujian->waktu_mulai = Carbon::parse($request['waktu_mulai'], 'WIB');
+                $jadwal_ujian->waktu_selesai = Carbon::parse($request['waktu_selesai'], 'WIB');
+
+                foreach ($jadwal_ujian->UjianSiswas as $ujian) 
+                {
+                    $ujian->waktu_mulai = $jadwal_ujian->waktu_mulai;
+                    $ujian->waktu_selesai = $jadwal_ujian->waktu_selesai;
+                    $ujian->save();
+                }
+                DB::commit();
+                if($jadwal_ujian->save())return redirect()->route('jadwal_ujian.index')->withSuccess('Data Berhasil Dirubah');
+                else return redirect()->back()->withErrors('Data Gagal Ditambahkan');
+            } catch (\Exception $e) {
+                DB::rollback();
+                dd($e);
+            }
         }
     }
 
@@ -176,7 +191,9 @@ class JadwalUjianController extends Controller
                         $data = [
                             'random_soal' => json_encode($soal_id),
                             'random_jawaban' => json_encode($template_jawaban),
-                            'jawaban_siswa' => json_encode($jawaban_kosong)
+                            'jawaban_siswa' => json_encode($jawaban_kosong),
+                            'waktu_mulai' => $jadwal->waktu_mulai,
+                            'waktu_selesai' => $jadwal->waktu_selesai
                         ];
 
                         $ujian_siswa = UjianSiswa::firstOrCreate($data_check, $data);

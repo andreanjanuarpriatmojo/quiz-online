@@ -11,6 +11,8 @@
     <div class="content">
         <nav class="breadcrumb bg-white push">
             <a class="breadcrumb-item" href="javascript:void(0)">Quiz Online</a>
+            <a class="breadcrumb-item" href="{{route('pelajaran.index')}}">Pelajaran</a>
+            <a class="breadcrumb-item" href="{{route('paket_soal.index',$paket_soal->pelajaran->id)}}">Paket Soal</a>
             <span class="breadcrumb-item active">Soal</span>
         </nav>
         @include('includes.flash_msg')
@@ -18,16 +20,15 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">Soal</h3>
                 <div class="block-options">
-                    <a href="{{route('soal.create')}}" class="btn btn-primary text-primary-lighter">Tambah Baru</a>
+                    <a href="{{route('soal.create',$paket_soal->id)}}" class="btn btn-primary text-primary-lighter">Tambah Baru</a>
                 </div>
             </div> 
             <div class="block-content block-content-full">
                 <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                     <thead>
                         <tr>
-                            <th>Nama Pelajaran</th>
-                            <th class="d-none d-sm-table-cell">Nama Paket</th>
                             <th class="d-none d-sm-table-cell">Deskripsi Soal</th>
+                            <th class="d-none d-sm-table-cell">Jawaban Benar</th>
                             <th class="d-none d-sm-table-cell text-center">Action</th>
                             <th></th>
                         </tr>
@@ -35,9 +36,8 @@
                     <tbody>
                         @foreach($soals as $soal)
                         <tr>
-                            <td class="font-w600">{{$soal->paketsoal->pelajaran->nama_pelajaran}}</td>
-                            <td class="d-none d-sm-table-cell">{{$soal->paketsoal->nama_paket}}</td>
                             <td class="d-none d-sm-table-cell">{!! $soal->deskripsi_soal !!}</td>
+                            <td class="d-none d-sm-table-cell">Pilihan {!! $soal->jawaban !!}</td>
                             <td class="text-center">
                                 <a href="{{route('soal.edit',$soal->id)}}" class="btn btn-warning">Edit</a>
                                 <button type="button" value="{{route('soal.destroy',$soal->id)}}" class="btn btn-danger js-swal-confirm">Delete</button>

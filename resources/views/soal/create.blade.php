@@ -9,7 +9,9 @@
     <div class="content">
         <nav class="breadcrumb bg-white push">
             <a class="breadcrumb-item" href="javascript:void(0)">Quiz Online</a>
-            <a class="breadcrumb-item" href="{{route('soal.index')}}">Soal</a>
+            <a class="breadcrumb-item" href="{{route('pelajaran.index')}}">Pelajaran</a>
+            <a class="breadcrumb-item" href="{{route('paket_soal.index',$paket_soal->pelajaran->id)}}">Paket Soal</a>
+            <a class="breadcrumb-item" href="{{route('soal.index',$paket_soal->id)}}">Soal</a>
             <span class="breadcrumb-item active">Tambah Soal</span>
         </nav>
         @include('includes.flash_msg')
@@ -22,15 +24,7 @@
                     {{csrf_field()}}
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <div class="form-material">
-                                <select class="form-control" name="paket_soal_id" required>
-                                    <option value="" selected disabled><-- Pilih Paket Soal--></option>
-                                    @foreach($paket_soals as $paket_soal)
-                                    <option value="{{$paket_soal->id}}">{{$paket_soal->nama_paket}} ({{$paket_soal->pelajaran->nama_pelajaran}})</option>
-                                    @endforeach
-                                </select>
-                                <label for="material-text">Paket Soal (Pelajaran)</label>
-                            </div>
+                            <input type="hidden" name="paket_soal_id" value="{{$paket_soal->id}}">
                             <div class="form-material">
                                 <textarea id="js-ckeditor" name="deskripsi_soal">Masukan Deskripsi Soal</textarea>
                                 <label for="material-text">Deskripsi Soal</label>

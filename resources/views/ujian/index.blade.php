@@ -7,8 +7,8 @@
             <div class="content content-top text-center overflow-hidden">
                 <div class="pt-50 pb-20">
                     <h2 class="h4 font-w400 text-white-op invisible" data-toggle="appear" data-class="animated fadeInUp">Welcome to QuizNow!</h2>
-                    @if ($next_ujian)
-                    <h1 class="font-w700 text-white mb-10 invisible" data-toggle="appear" data-class="animated fadeInUp">Quiz Selanjutnya: {{ $next_ujian->Pelajaran->nama_pelajaran }}</h1>
+                    @if ($current_ujian)
+                    <h1 class="font-w700 text-white mb-10 invisible" data-toggle="appear" data-class="animated fadeInUp">Quiz Selanjutnya: {{ $current_ujian->Pelajaran->nama_pelajaran }}</h1>
                     @endif
                 </div>
             </div>
@@ -29,7 +29,7 @@
                                     <i class="si si-fire fa-3x text-corporate-light"></i>
                                 </div>
                                 <div class="font-size-sm font-w600 text-uppercase text-white-op">Nama Quiz</div>
-                                <div class="font-size-h4 font-w600 text-white">{{ $next_ujian ? $next_ujian->nama_ujian : '-' }}</div>
+                                <div class="font-size-h4 font-w600 text-white">{{ $current_ujian ? $current_ujian->nama_ujian : '-' }}</div>
                             </div>
                         </a>
                     </div>
@@ -40,7 +40,7 @@
                                     <i class="si si-envelope-letter fa-3x text-elegance-light"></i>
                                 </div>
                                 <div class="font-size-sm font-w600 text-uppercase text-white-op">Durasi</div>
-                                <div class="font-size-h4 font-w600 text-white"><span data-toggle="countTo" data-speed="1000" data-to="{{ $next_ujian ? $next_ujian->waktu_mulai->diffInMinutes($next_ujian->waktu_selesai) : '0' }}">0</span> menit</div>
+                                <div class="font-size-h4 font-w600 text-white"><span data-toggle="countTo" data-speed="1000" data-to="{{ $current_ujian ? $current_ujian->waktu_mulai->diffInMinutes($current_ujian->waktu_selesai) : '0' }}">0</span> menit</div>
                             </div>
                         </a>
                     </div>
@@ -51,7 +51,7 @@
                                     <i class="si si-bar-chart fa-3x text-primary-light"></i>
                                 </div>
                                 <div class="font-size-sm font-w600 text-uppercase text-white-op">Waktu Mulai</div>
-                                <div class="font-size-h5 font-w600 text-white">{{ $next_ujian ? $next_ujian->waktu_mulai->format('d F Y H:i:s') : '-' }}</div>
+                                <div class="font-size-h5 font-w600 text-white">{{ $current_ujian ? $current_ujian->waktu_mulai->format('d F Y H:i:s') : '-' }}</div>
                             </div>
                         </a>
                     </div>
@@ -62,7 +62,7 @@
                                     <i class="si si-trophy fa-3x text-earth-light"></i>
                                 </div>
                                 <div class="font-size-sm font-w600 text-uppercase text-white-op">Waktu Selesai</div>
-                                <div class="font-size-h5 font-w600 text-white">{{ $next_ujian ? $next_ujian->waktu_selesai->format('d F Y H:i:s') : '-' }}</div>
+                                <div class="font-size-h5 font-w600 text-white">{{ $current_ujian ? $current_ujian->waktu_selesai->format('d F Y H:i:s') : '-' }}</div>
                             </div>
                         </a>
                     </div>
@@ -82,8 +82,8 @@
                             </div>
                             <div class="col-xl-6 col-12">
                                 <div class="pt-20">
-                                    @if ($next_ujian)
-                                        @if ($next_ujian->ujianIsRunning())
+                                    @if ($current_ujian)
+                                        @if ($current_ujian->ujianIsRunning())
                                         <button class="btn btn-hero btn-lg btn-danger">ENTER QUIZ NOW!</button>
                                         @else
                                         <button class="btn btn-hero btn-lg btn-danger" disabled>QUIZ BELUM DIMULAI</button>

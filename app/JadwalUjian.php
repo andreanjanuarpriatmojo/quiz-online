@@ -30,6 +30,11 @@ class JadwalUjian extends Model
         return $this->belongsToMany(Kelas::class, 'ujian_kelas');
     }
 
+    public function UjianSiswas()
+    {
+        return $this->hasMany('App\UjianSiswa');
+    }
+
     public function ujianIsRunning()
     {
         $now = Carbon::now('WIB');
