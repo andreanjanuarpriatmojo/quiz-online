@@ -36,12 +36,14 @@ class UjianController extends Controller
         $current_soal_id = $random_jawaban[$arr_index];
 
         $soal = Soal::findOrFail($current_soal_id);
-        
+        $total_soal = count($random_jawaban);
+
         $data = [
             'ujian_siswa' => $ujian_siswa,
             'soal' => $soal,
+            'total_soal' => $total_soal,
             'prev_number' => request('no') == 1 ? null : request('no') - 1,
-            'next_number' => request('no') == count($random_jawaban) ? null : request('no') + 1,
+            'next_number' => request('no') == $total_soal ? null : request('no') + 1,
         ];
 
         return view('ujian.ujian', $data);

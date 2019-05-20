@@ -17,7 +17,7 @@
                         @foreach (json_decode($ujian_siswa->random_jawaban) as $jawaban)
                         <br>
                         <label class="css-control css-control-secondary css-radio">
-                            <input type="radio" class="css-control-input" name="radio-group1" checked>
+                            <input type="radio" class="css-control-input" name="jawaban">
                             <span class="css-control-indicator"></span> {!! $soal->{"pilihan_".$jawaban} !!}
                         </label>
                         @endforeach
@@ -29,42 +29,32 @@
                 <div class="block">
                     <div class="block-header text-center">
                         <p class="p-10 bg-muted text-white">Sisa Waktu</p>
-                        <p class="p-10 bg-primary text-white">00:30:00</p>
+                        <p class="p-10 bg-primary text-white js-countdown font-w700"></p>
                     </div>
-                    <div class="block-content text-center row">
-                        <div class="col-md-12">
-                            <button type="button" class="btn btn-sm btn-circle btn-alt-secondary mr-5 mb-5">
-                                1
-                            </button>
-                            <button type="button" class="btn btn-sm btn-circle btn-alt-secondary mr-5 mb-5">
-                                2
-                            </button>
-                            <button type="button" class="btn btn-sm btn-circle btn-alt-secondary mr-5 mb-5">
-                                3
-                            </button>
-                            <button type="button" class="btn btn-sm btn-circle btn-alt-secondary mr-5 mb-5">
-                                4
-                            </button>
-                            <button type="button" class="btn btn-sm btn-circle btn-alt-secondary mr-5 mb-5">
-                                5
-                            </button>
-                        </div>
-                        <div class="col-md-12">
-                            <button type="button" class="btn btn-sm btn-circle btn-alt-secondary mr-5 mb-5">
-                                6
-                            </button>
-                            <button type="button" class="btn btn-sm btn-circle btn-alt-secondary mr-5 mb-5">
-                                7
-                            </button>
-                            <button type="button" class="btn btn-sm btn-circle btn-alt-secondary mr-5 mb-5">
-                                8
-                            </button>
-                            <button type="button" class="btn btn-sm btn-circle btn-alt-secondary mr-5 mb-5">
-                                9
-                            </button>
-                            <button type="button" class="btn btn-sm btn-circle btn-alt-secondary mr-5 mb-5">
-                                10
-                            </button>
+                    <div class="block-content text-center">
+                        <div class="row">
+                            @php
+                                $nomor = 1;
+                            @endphp
+                            @foreach (array_chunk(json_decode($ujian_siswa->random_soal), 5) as $ujian)
+                            <div class="col-md-12">
+                                @foreach ($ujian as $uj)
+                                <a href="{{ url("siswa/ujian/$ujian_siswa->id?no=$nomor") }}" class="btn btn-sm btn-circle {{ $nomor == request('no') ? 'btn-alt-primary' : 'btn-alt-secondary' }} mr-5 mb-5">{{ $nomor++ }}</a>
+                                @endforeach
+                            </div>
+                            @endforeach
+                            {{-- <div class="col-md-12">
+                            @for ($i = 1; $i <= 10; $i++)
+                                <a href="{{ url("siswa/ujian/$ujian_siswa->id?no=$i") }}" class="btn btn-sm btn-circle btn-alt-secondary mr-5 mb-5">
+                                    {{ $i }}
+                                </a>
+                                @if ($i % 5 == 0)
+                                </div>
+                                @if ($i != $total_soal-1)
+                                <div class="col-md-12">
+                                @endif
+                                @endif
+                            @endfor --}}
                         </div>
                     </div>
                     <br>
@@ -99,6 +89,38 @@
                 </div>
             </div>
         </div>
+        
     </div>
 
+@endsection
+
+@section('custom-js')
+    <script src="{{ url('codebase/src/assets/js/plugins/jquery-countdown/jquery.countdown.min.js') }}"></script>
+
+    <script>
+        /*
+        *  Document   : op_coming_soon.js
+        *  Author     : pixelcave
+        *  Description: Custom JS code used in Coming Soon Page
+        */
+
+        var OpComingSoon = function() {
+            // Init Countdown.js, for more examples you can check out https://github.com/hilios/jQuery.countdown
+            var initCounter = function(){
+                jQuery('.js-countdown').countdown('{{ $ujian_siswa->waktu_selesai }}', function(event) {
+                    jQuery(this).html(event.strftime('%H:%M:%S'));
+                });
+            };
+
+            return {
+                init: function () {
+                    // Init Countdown
+                    initCounter();
+                }
+            };
+        }();
+
+        // Initialize when page loads
+        jQuery(function(){ OpComingSoon.init(); });
+    </script>
 @endsection
