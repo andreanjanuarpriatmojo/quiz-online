@@ -60,8 +60,8 @@ class JadwalUjianController extends Controller
                 'nama_ujian' => $request['nama_ujian'],
                 'pelajaran_id' => $request['pelajaran_id'],
                 'paket_soal_id' => $request['paket_id'],
-                'waktu_mulai' => Carbon::parse($request['waktu_mulai']),
-                'waktu_selesai' => Carbon::parse($request['waktu_selesai']),
+                'waktu_mulai' => Carbon::parse($request['waktu_mulai'], 'WIB'),
+                'waktu_selesai' => Carbon::parse($request['waktu_selesai'], 'WIB'),
             ]);
             if($jadwal_ujian)return redirect()->route('jadwal_ujian.index')->withSuccess('Data Berhasil Ditambahkan');
             else return redirect()->back()->withErrors('Data Gagal Ditambahkan');
@@ -115,8 +115,8 @@ class JadwalUjianController extends Controller
             $jadwal_ujian = JadwalUjian::find($id);
             $jadwal_ujian->nama_ujian = $request['nama_ujian'];
             $jadwal_ujian->pelajaran_id = $request['pelajaran_id'];
-            $jadwal_ujian->waktu_mulai = $request['waktu_mulai'];
-            $jadwal_ujian->waktu_selesai = $request['waktu_selesai'];
+            $jadwal_ujian->waktu_mulai = Carbon::parse($request['waktu_mulai'], 'WIB');
+            $jadwal_ujian->waktu_selesai = Carbon::parse($request['waktu_selesai'], 'WIB');
             if($jadwal_ujian->save())return redirect()->route('jadwal_ujian.index')->withSuccess('Data Berhasil Dirubah');
             else return redirect()->back()->withErrors('Data Gagal Ditambahkan');
         }
@@ -184,7 +184,7 @@ class JadwalUjianController extends Controller
                 }
             }
             DB::commit();
-            return redirect('/jadwal_ujian');
+            return redirect('/jadwal_ujian')->withSuccess('Peserta Berhasil Diubah');
         } catch (\Exception $e) {
             DB::rollback();
             dd($e);

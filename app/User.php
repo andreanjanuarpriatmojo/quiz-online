@@ -46,4 +46,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Kelas::class, 'user_kelas');
     }
+
+    public function UjianSiswa()
+    {
+        return $this->hasMany('App\UjianSiswa');
+    }
 }
