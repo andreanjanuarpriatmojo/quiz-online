@@ -44,37 +44,41 @@
                         <p class="p-10 bg-muted text-white">Sisa Waktu</p>
                         <p class="p-10 bg-primary text-white">00:30:00</p>
                     </div>
-                    <div class="block-content text-center">
-                        <button type="button" class="btn btn-sm btn-circle btn-alt-secondary mr-5 mb-5">
-                            1
-                        </button>
-                        <button type="button" class="btn btn-sm btn-circle btn-alt-secondary mr-5 mb-5">
-                            2
-                        </button>
-                        <button type="button" class="btn btn-sm btn-circle btn-alt-secondary mr-5 mb-5">
-                            3
-                        </button>
-                        <button type="button" class="btn btn-sm btn-circle btn-alt-secondary mr-5 mb-5">
-                            4
-                        </button>
-                        <button type="button" class="btn btn-sm btn-circle btn-alt-secondary mr-5 mb-5">
-                            5
-                        </button>
-                        <button type="button" class="btn btn-sm btn-circle btn-alt-secondary mr-5 mb-5">
-                            6
-                        </button>
-                        <button type="button" class="btn btn-sm btn-circle btn-alt-secondary mr-5 mb-5">
-                            7
-                        </button>
-                        <button type="button" class="btn btn-sm btn-circle btn-alt-secondary mr-5 mb-5">
-                            8
-                        </button>
-                        <button type="button" class="btn btn-sm btn-circle btn-alt-secondary mr-5 mb-5">
-                            9
-                        </button>
-                        <button type="button" class="btn btn-sm btn-circle btn-alt-secondary mr-5 mb-5">
-                            10
-                        </button>
+                    <div class="block-content text-center row">
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-sm btn-circle btn-alt-secondary mr-5 mb-5">
+                                1
+                            </button>
+                            <button type="button" class="btn btn-sm btn-circle btn-alt-secondary mr-5 mb-5">
+                                2
+                            </button>
+                            <button type="button" class="btn btn-sm btn-circle btn-alt-secondary mr-5 mb-5">
+                                3
+                            </button>
+                            <button type="button" class="btn btn-sm btn-circle btn-alt-secondary mr-5 mb-5">
+                                4
+                            </button>
+                            <button type="button" class="btn btn-sm btn-circle btn-alt-secondary mr-5 mb-5">
+                                5
+                            </button>
+                        </div>
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-sm btn-circle btn-alt-secondary mr-5 mb-5">
+                                6
+                            </button>
+                            <button type="button" class="btn btn-sm btn-circle btn-alt-secondary mr-5 mb-5">
+                                7
+                            </button>
+                            <button type="button" class="btn btn-sm btn-circle btn-alt-secondary mr-5 mb-5">
+                                8
+                            </button>
+                            <button type="button" class="btn btn-sm btn-circle btn-alt-secondary mr-5 mb-5">
+                                9
+                            </button>
+                            <button type="button" class="btn btn-sm btn-circle btn-alt-secondary mr-5 mb-5">
+                                10
+                            </button>
+                        </div>
                     </div>
                     <br>
                 </div>
@@ -94,10 +98,10 @@
                     <div class="block-content">
                         <nav class="clearfix push">
                             <button type="button" class="btn btn-primary float-right" data-toggle="tooltip" title="Next">
-                                    Soal Selanjutnya <i class="fa fa-chevron-right fa-fw"></i>
+                                    Selanjutnya <i class="fa fa-chevron-right fa-fw"></i>
                             </button>
                             <button type="button" class="btn btn-primary float-left" data-toggle="tooltip" title="Previous">
-                                <i class="fa fa-chevron-left fa-fw"></i> Soal Sebelumnya
+                                <i class="fa fa-chevron-left fa-fw"></i> Sebelumnya
                             </button>
                         </nav>
                     </div>
