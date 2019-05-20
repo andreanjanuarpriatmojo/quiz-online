@@ -10,7 +10,7 @@
             <div class="col-md-9">
                 <div class="block">
                     <div class="block-header">
-                        <h1><span class="badge badge-info">Soal No.{{ request('no') }}</span></h1>
+                        <h1 class="block-title">Soal No.{{ request('no') }}</h1>
                     </div>
                     <div class="block-content">
                         {!! $soal->deskripsi_soal !!}
