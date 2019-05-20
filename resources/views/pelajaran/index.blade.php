@@ -18,7 +18,7 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">Pelajaran</h3>
                 <div class="block-options">
-                    <a href="{{route('pelajaran.create')}}" class="btn btn-primary text-primary-lighter">Tambah Baru</a>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambah-pelajaran">Tambah Pelajaran</button>
                 </div>
             </div> 
             <div class="block-content block-content-full">
@@ -39,6 +39,7 @@
                             <td class="text-center">
                                 <a href="{{route('pelajaran.edit',$pelajaran->id)}}" class="btn btn-warning">Edit</a>
                                 <button type="button" value="{{route('pelajaran.destroy',$pelajaran->id)}}" class="btn btn-danger js-swal-confirm">Delete</button>
+                                <a href="{{route('paket_soal.index',$pelajaran->id)}}" class="btn btn-secondary">Paket Soal</a>
                             </td>
                             {{-- <td></td>
                             <td></td>
@@ -53,6 +54,41 @@
     <!-- END Page Content -->
 </main>
 <!-- END Main Container -->
+<div class="modal fade" id="tambah-pelajaran" tabindex="-1" role="dialog" aria-labelledby="modal-fadein" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form action="{{route('pelajaran.store')}}" method="POST">
+                <div class="block block-themed block-transparent mb-0">
+                    <div class="block-header bg-primary-dark">
+                        <h3 class="block-title">Tambah Pelajaran</h3>
+                        <div class="block-options">
+                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                <i class="si si-close"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="block-content">
+                            {{csrf_field()}}
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <div class="form-material">
+                                        <input type="text" class="form-control" id="material-text" name="nama_pelajaran" placeholder="Masukkan nama pelajaran" required>
+                                        <label for="material-text">Nama Pelajaran</label>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-alt-success">
+                        <i class="fa fa-plus"></i> Tambahkan
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 @endsection
 @section('additional_js')
 <script src="{{asset('codebase/src/assets/js/plugins/bootstrap-notify/bootstrap-notify.min.js')}}"></script>

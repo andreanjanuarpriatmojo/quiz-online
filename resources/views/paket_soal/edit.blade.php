@@ -10,7 +10,8 @@
     <div class="content">
         <nav class="breadcrumb bg-white push">
             <a class="breadcrumb-item" href="javascript:void(0)">Quiz Online</a>
-            <a class="breadcrumb-item" href="{{route('paket_soal.index')}}">Paket Soal</a>
+            <a class="breadcrumb-item" href="{{route('pelajaran.index')}}">Pelajaran</a>
+            <a class="breadcrumb-item" href="{{route('paket_soal.index',$paket_soal->pelajaran_id)}}">Paket Soal</a>
             <span class="breadcrumb-item active">Edit Paket Soal</span>
         </nav>
         @include('includes.flash_msg')
@@ -32,16 +33,7 @@
                                 <button type="submit" class="btn btn-alt-primary">Simpan Data</button>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-material">
-                                <select class="form-control" name="pelajaran_id" required>
-                                    @foreach($pelajarans as $pelajaran)
-                                    <option value="{{$pelajaran->id}}" {{ $paket_soal->pelajaran_id == $pelajaran->id ? 'selected' : '' }}>{{$pelajaran->nama_pelajaran}}</option>
-                                    @endforeach
-                                </select>
-                                <label for="material-text">Pelajaran</label>
-                            </div>
-                        </div>
+                        <input type="hidden" name="pelajaran_id" value="{{$paket_soal->pelajaran_id}}">
                     </div>
                 </form>
             </div>

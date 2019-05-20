@@ -14,9 +14,10 @@ class PaketSoalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($pelajaran_id)
     {
-        $data['paket_soals'] = PaketSoal::all();
+        $data['paket_soals'] = PaketSoal::where('pelajaran_id',$pelajaran_id)->get();
+        $data['pelajaran'] = Pelajaran::find($pelajaran_id);
         return view('paket_soal.index',$data);
     }
 
@@ -25,11 +26,11 @@ class PaketSoalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        $data['pelajarans'] = Pelajaran::all();
-        return view('paket_soal.create',$data);
-    }
+    // public function create($pelajaran_id)
+    // {
+    //     $data['pelajarans'] = Pelajaran::all();
+    //     return view('paket_soal.create',$data);
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -51,7 +52,7 @@ class PaketSoalController extends Controller
                 'nama_paket' => $request['nama_paket'],
                 'pelajaran_id' => $request['pelajaran_id'],
             ]);
-            if($paket_soal)return redirect()->route('paket_soal.index')->withSuccess('Data Berhasil Ditambahkan');
+            if($paket_soal)return redirect()->route('paket_soal.index',$request['pelajaran_id'])->withSuccess('Data Berhasil Ditambahkan');
             else return redirect()->back()->withErrors('Data Gagal Ditambahkan');
         }
     }
@@ -100,7 +101,7 @@ class PaketSoalController extends Controller
             $paket_soal = PaketSoal::find($id);
             $paket_soal->nama_paket = $request['nama_paket'];
             $paket_soal->pelajaran_id = $request['pelajaran_id'];
-            if($paket_soal->save())return redirect()->route('paket_soal.index')->withSuccess('Data Berhasil Dirubah');
+            if($paket_soal->save())return redirect()->route('paket_soal.index',$paket_soal->pelajaran_id)->withSuccess('Data Berhasil Dirubah');
             else return redirect()->back()->withErrors('Data Gagal Ditambahkan');
         }
     }

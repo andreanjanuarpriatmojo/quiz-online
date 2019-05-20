@@ -215,12 +215,6 @@
                                 <li>
                                     <a class="{{ Request::is('pelajaran') ? 'active' : '' }}" href="{{route('pelajaran.index')}}"><i class="fa fa-book"></i><span class="sidebar-mini-hide">Pelajaran</span></a>
                                 </li>
-                                <li>
-                                    <a class="{{ Request::is('paket_soal') ? 'active' : '' }}" href="{{route('paket_soal.index')}}"><i class="si si-notebook"></i><span class="sidebar-mini-hide">Paket Soal</span></a>
-                                </li>
-                                <li>
-                                    <a class="{{ Request::is('soal') ? 'active' : '' }}" href="{{route('soal.index')}}"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Soal</span></a>
-                                </li>
                                 @endif
                                 <li class="nav-main-heading"><span class="sidebar-mini-visible">Ujian</span><span class="sidebar-mini-hidden">Ujian</span></li>
                                 @if(Auth::user()->role == 'admin' || Auth::user()->role == 'guru')
