@@ -10,30 +10,17 @@
             <div class="col-md-9">
                 <div class="block">
                     <div class="block-header">
-                        <h1 class="block-title">Soal No 1</h1>
+                        <h1><span class="badge badge-info">Soal No.{{ request('no') }}</span></h1>
                     </div>
                     <div class="block-content">
-                        <p>Dolor posuere proin blandit accumsan senectus netus nullam curae, ornare laoreet adipiscing luctus mauris adipiscing pretium eget fermentum, tristique lobortis est ut metus lobortis tortor tincidunt himenaeos habitant quis dictumst proin odio sagittis purus mi, nec taciti vestibulum quis in sit varius lorem sit metus mi.</p>
+                        {!! $soal->deskripsi_soal !!}
+                        @foreach (json_decode($ujian_siswa->random_jawaban) as $jawaban)
                         <br>
                         <label class="css-control css-control-secondary css-radio">
                             <input type="radio" class="css-control-input" name="radio-group1" checked>
-                            <span class="css-control-indicator"></span> Option 1
+                            <span class="css-control-indicator"></span> {!! $soal->{"pilihan_".$jawaban} !!}
                         </label>
-                        <br>
-                        <label class="css-control css-control-secondary css-radio">
-                            <input type="radio" class="css-control-input" name="radio-group1" checked>
-                            <span class="css-control-indicator"></span> Option 2
-                        </label>
-                        <br>
-                        <label class="css-control css-control-secondary css-radio">
-                            <input type="radio" class="css-control-input" name="radio-group1" checked>
-                            <span class="css-control-indicator"></span> Option 3
-                        </label>
-                        <br>
-                        <label class="css-control css-control-secondary css-radio">
-                            <input type="radio" class="css-control-input" name="radio-group1" checked>
-                            <span class="css-control-indicator"></span> Option 4
-                        </label>
+                        @endforeach
                     </div>
                     <br>
                 </div>
@@ -93,12 +80,16 @@
                 <div class="block">
                     <div class="block-content">
                         <nav class="clearfix push">
-                            <button type="button" class="btn btn-primary float-right" data-toggle="tooltip" title="Next">
-                                    Soal Selanjutnya <i class="fa fa-chevron-right fa-fw"></i>
-                            </button>
-                            <button type="button" class="btn btn-primary float-left" data-toggle="tooltip" title="Previous">
+                            @if ($prev_number)
+                            <a href="{{ url("siswa/ujian/$ujian_siswa->id?no=$prev_number") }}" class="btn btn-primary" data-toggle="tooltip" title="Next">
                                 <i class="fa fa-chevron-left fa-fw"></i> Soal Sebelumnya
-                            </button>
+                            </a>
+                            @endif
+                            @if ($next_number)
+                            <a href="{{ url("siswa/ujian/$ujian_siswa->id?no=$next_number") }}" class="btn btn-primary float-right" data-toggle="tooltip" title="Next">
+                                Soal Selanjutnya <i class="fa fa-chevron-right fa-fw"></i>
+                            </a>
+                            @endif
                         </nav>
                     </div>
                 </div>

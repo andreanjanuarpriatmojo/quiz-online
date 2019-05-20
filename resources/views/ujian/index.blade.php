@@ -84,7 +84,7 @@
                                 <div class="pt-20">
                                     @if ($current_ujian)
                                         @if ($current_ujian->ujianIsRunning())
-                                        <button class="btn btn-hero btn-lg btn-danger">ENTER QUIZ NOW!</button>
+                                        <a href="{{ url("siswa/ujian/$ujian_siswa_id?no=1") }}" class="btn btn-hero btn-lg btn-danger">ENTER QUIZ NOW!</a>
                                         @else
                                         <button class="btn btn-hero btn-lg btn-danger" disabled>QUIZ BELUM DIMULAI</button>
                                         @endif
