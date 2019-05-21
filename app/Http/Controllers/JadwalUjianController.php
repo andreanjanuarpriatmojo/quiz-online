@@ -11,6 +11,7 @@ use App\UjianKelas;
 use App\Kelas;
 use App\PaketSoal;
 use App\UjianSiswa;
+use App\Soal;
 use DB;
 use Uuid;
 
@@ -217,5 +218,67 @@ class JadwalUjianController extends Controller
         $pelajaran = Pelajaran::findOrFail($request->pelajaran_id);
         $pakets = $pelajaran->PaketSoals;
         return response()->json($pakets);
+    }
+
+    public function hasil($jadwal_ujian_id)
+    {
+        $jadwal = JadwalUjian::findOrFail($jadwal_ujian_id);
+        $kelases = $jadwal->KelasPeserta;
+        
+        $data = [
+            'kelases' => $kelases,
+            'jadwal_ujian' => $jadwal
+        ];
+
+        return view('jadwal_ujian.hasil', $data);
+    }
+
+    public function koreksi($jadwal_ujian_id)
+    {
+        $jadwal = JadwalUjian::findOrFail($jadwal_ujian_id);
+        $kelases = $jadwal->KelasPeserta;
+
+        DB::beginTransaction();
+
+        try {
+            foreach($kelases as $kelas)
+            {
+                $user_ids = $kelas->User()->pluck('users.id');
+    
+                foreach ($user_ids as $user_id) 
+                {
+                    $ujian_siswa = UjianSiswa::where('user_id', $user_id)->where('jadwal_ujian_id', $jadwal->id)->first();
+                    if($ujian_siswa)
+                    {
+                        $jawaban_siswa = json_decode($ujian_siswa->jawaban_siswa);
+                        $soal_ids = json_decode($ujian_siswa->random_soal);
+                        $jumlah_benar = 0;
+
+                        foreach ($soal_ids as $ind => $soal_id) 
+                        {
+                            $soal = Soal::findOrFail($soal_id);
+                            if($soal->jawaban == $jawaban_siswa[$ind])
+                            {
+                                $jumlah_benar++;
+                            }
+                        }
+                        
+                        $total_soal = count($soal_ids);
+                        $nilai = ($jumlah_benar / $total_soal) * 100;
+
+                        $ujian_siswa->jumlah_benar = $jumlah_benar;
+                        $ujian_siswa->nilai = $nilai;
+                        $ujian_siswa->save();
+                    }
+                }
+            }
+            DB::commit();
+
+            return back()->withSuccess('Hasil ujian telah dikoreksi ulang');
+        } catch (\Exception $e) {
+            DB::rollback();
+            throw $e;
+        }
+
     }
 }

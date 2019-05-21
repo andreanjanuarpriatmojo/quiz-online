@@ -51,7 +51,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-material">
-                                <input type="text" class="form-control datetimepicker-input" name="waktu_selesai"  id="datetimepicker1" data-toggle="datetimepicker" data-target="#datetimepicker1" required value="{{$jadwal_ujian->waktu_mulai}}" autocomplete="off">
+                                <input type="text" class="form-control datetimepicker-input" name="waktu_mulai"  id="datetimepicker1" data-toggle="datetimepicker" data-target="#datetimepicker1" required value="{{$jadwal_ujian->waktu_mulai}}" autocomplete="off">
                                 <label for="datetimepicker1">Waktu Mulai</label>
                             </div>
                             <div class="form-material">
@@ -72,10 +72,12 @@
 <script type="text/javascript">
     $(function () {
         $('#datetimepicker1').datetimepicker({
-            format: 'YYYY-MM-DD hh:mm:ss'
+            format: 'YYYY-MM-DD hh:mm:ss',
+            date: new Date({{ $jadwal_ujian->waktu_mulai->format('Y, m, d, H, i, s') }})
         });
         $('#datetimepicker2').datetimepicker({
-            format: 'YYYY-MM-DD hh:mm:ss'
+            format: 'YYYY-MM-DD hh:mm:ss',
+            date: new Date({{ $jadwal_ujian->waktu_selesai->format('Y, m, d, H, i, s') }})
         });
     });
 

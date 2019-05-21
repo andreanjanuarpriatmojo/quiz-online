@@ -40,4 +40,10 @@ class JadwalUjian extends Model
         $now = Carbon::now('WIB');
         return $this->waktu_mulai < $now && $this->waktu_selesai > $now;
     }
+
+    public function ujianIsFinished()
+    {
+        $now = Carbon::now('WIB');
+        return $this->waktu_selesai < $now;
+    }
 }

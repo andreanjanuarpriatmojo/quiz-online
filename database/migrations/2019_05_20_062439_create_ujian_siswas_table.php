@@ -23,6 +23,8 @@ class CreateUjianSiswasTable extends Migration
             $table->string('status')->default('Created');
             $table->datetime('waktu_mulai');
             $table->datetime('waktu_selesai');
+            $table->integer('jumlah_benar')->nullable();
+            $table->float('nilai')->nullable();
             $table->timestamps();
         });
     }

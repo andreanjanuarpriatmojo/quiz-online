@@ -39,6 +39,8 @@ Route::delete('/soal/{id}/destroy', 'SoalController@destroy')->name('soal.destro
 
 Route::resource('jadwal_ujian', 'JadwalUjianController')->middleware('checkRole:adminGuru');
 Route::get('/jadwal_ujian/{id}/peserta', 'JadwalUjianController@peserta')->middleware('checkRole:adminGuru');
+Route::get('/jadwal_ujian/{id}/hasil', 'JadwalUjianController@hasil')->middleware('checkRole:adminGuru');
+Route::get('/jadwal_ujian/{id}/koreksi', 'JadwalUjianController@koreksi')->middleware('checkRole:adminGuru');
 Route::post('/jadwal_ujian/ganti_peserta', 'JadwalUjianController@ganti_peserta')->middleware('checkRole:adminGuru');
 Route::get('/jadwal_ujian/ajax/get_paket', 'JadwalUjianController@getPaket')->middleware('checkRole:adminGuru');
 

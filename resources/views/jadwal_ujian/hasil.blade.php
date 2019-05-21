@@ -14,47 +14,57 @@
             <span class="breadcrumb-item active">Jadwal Ujian</span>
         </nav>
         @include('includes.flash_msg')
+        <!-- Block Tabs Alternative Style -->
         <div class="block">
-            <div class="block-header block-header-default">
-                <h3 class="block-title">Jadwal Ujian</h3>
-                <div class="block-options">
-                    <a href="{{route('jadwal_ujian.create')}}" class="btn btn-primary text-primary-lighter">Tambah Baru</a>
+            <ul class="nav nav-tabs nav-tabs-block align-items-center js-tabs-enabled" data-toggle="tabs" role="tablist">
+                @foreach ($kelases as $kelas)
+                <li class="nav-item">
+                    <a class="nav-link {{ $loop->first ? 'active' : '' }}" href="#kelas_{{ $kelas->id }}">{{ $kelas->nama_kelas }}</a>
+                </li>
+                @endforeach
+                <li class="nav-item ml-auto">
+                    <div class="block-options mr-15">
+                        <a class="btn-block-option" href="{{ url("jadwal_ujian/$jadwal_ujian->id/koreksi") }}" id="refresh_button">
+                            <i class="si si-refresh"></i> Koreksi 
+                        </a>
+                    </div>
+                </li>
+            </ul>
+            <div class="block-content tab-content">
+                @foreach ($kelases as $kelas)
+                <div class="tab-pane {{ $loop->first ? 'active' : '' }}" id="kelas_{{ $kelas->id }}" role="tabpanel">
+                    <h4 class="font-w400">Hasil Ujian</h4>
+                    <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama</th>
+                                <th>Jumlah Benar</th>
+                                <th>Nilai</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                                $no = 1;
+                            @endphp
+                            @foreach ($kelas->user as $user)
+                                <tr>
+                                    <td>{{ $no++ }}</td>
+                                    <td>{{ $user->name }}</td>
+                                    @php
+                                        $ujian_siswa = $user->UjianSiswa()->where('jadwal_ujian_id', $jadwal_ujian->id)->first();
+                                    @endphp
+                                    <td>{{ $ujian_siswa->jumlah_benar }}</td>
+                                    <td>{{ $ujian_siswa->nilai }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
-            </div> 
-            <div class="block-content block-content-full">
-                <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
-                    <thead>
-                        <tr>
-                            <th>Nama Ujian</th>
-                            <th class="d-none d-sm-table-cell">Nama Pelajaran</th>
-                            <th class="d-none d-sm-table-cell">Waktu Mulai</th>
-                            <th class="d-none d-sm-table-cell">Waktu Selesai</th>
-                            <th class="d-none d-sm-table-cell text-center">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($jadwal_ujians as $jadwal_ujian)
-                        <tr>
-                            <td class="font-w600">{{$jadwal_ujian->nama_ujian}}</td>
-                            <td class="d-none d-sm-table-cell">{{$jadwal_ujian->pelajaran->nama_pelajaran}}</td>
-                            <td class="d-none d-sm-table-cell">{{$jadwal_ujian->waktu_mulai->format('d F Y H:i')}}</td>
-                            <td class="d-none d-sm-table-cell">{{$jadwal_ujian->waktu_selesai->format('d F Y H:i')}}</td>
-                            <td class="text-center">
-                                <a href="{{route('jadwal_ujian.edit',$jadwal_ujian->id)}}" class="btn btn-warning">Edit</a>
-                                <button type="button" value="{{route('jadwal_ujian.destroy',$jadwal_ujian->id)}}" class="btn btn-danger js-swal-confirm">Delete</button>
-                                <a class="btn btn-info" href="{{ url("jadwal_ujian/$jadwal_ujian->id/peserta") }}">Kelas Peserta Ujian</a>
-                                @if ($jadwal_ujian->ujianIsFinished())
-                                <a class="btn btn-success" href="{{ url("jadwal_ujian/$jadwal_ujian->id/hasil") }}">Hasil Ujian</a>
-                                @else
-                                <button type="button" class="btn btn-success" data-toggle="popover" title="Ujian Belum Selesai" data-placement="right" data-content="Hasil ujian dapat dilihat setelah ujian selesai">Hasil Ujian</button>
-                                @endif
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                @endforeach
             </div>
         </div>
+        <!-- END Block Tabs Alternative Style -->
     </div>
     <!-- END Page Content -->
 
@@ -111,7 +121,7 @@
     // $(".button_peserta").click(function(){
     //     $("#jadwal_ujian_id").val($(this).val());
     // });
-
+    
     // $("#peserta_datatable").dataTable({
     //     serverSide: true,
     //     processing: true,
@@ -135,45 +145,45 @@
 
 
     // Init an example confirm alert on button click
-    $('.js-swal-confirm').on('click', function(){
-        var url = $(this).val()
-        console.log(url);
-        swal({
-            title: 'Apa anda yakin akan menghapus data ini?',
-            text: 'Data yang telah dihapus tidak bisa dikembalikan!',
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#d26a5c',
-            confirmButtonText: 'Ya, hapus data',
-            html: false,
-            preConfirm: function() {
-                return new Promise(function (resolve) {
-                    setTimeout(function () {
-                        resolve();
-                    }, 50);
-                });
-            }
-        }).then(function(result){
-            if (result.value) {
-                $.ajax({
-                    url: url,
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: 'DELETE',
-                    success: function(result) {
-                        console.log('Data deleted');
-                    }
-                });
-                swal('Deleted!', 'Data anda berhasil dihapus.', 'success')
-                .then(function(result){
-                    location.reload();
-                });
-                // result.dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
-            } else if (result.dismiss === 'cancel') {
-                swal('Cancelled', 'Data anda batal dihapus', 'error');
-            }
-        });
-    });
+    // $('.js-swal-confirm').on('click', function(){
+    //     var url = $(this).val()
+    //     console.log(url);
+    //     swal({
+    //         title: 'Apa anda yakin akan menghapus data ini?',
+    //         text: 'Data yang telah dihapus tidak bisa dikembalikan!',
+    //         type: 'warning',
+    //         showCancelButton: true,
+    //         confirmButtonColor: '#d26a5c',
+    //         confirmButtonText: 'Ya, hapus data',
+    //         html: false,
+    //         preConfirm: function() {
+    //             return new Promise(function (resolve) {
+    //                 setTimeout(function () {
+    //                     resolve();
+    //                 }, 50);
+    //             });
+    //         }
+    //     }).then(function(result){
+    //         if (result.value) {
+    //             $.ajax({
+    //                 url: url,
+    //                 headers: {
+    //                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //                 },
+    //                 type: 'DELETE',
+    //                 success: function(result) {
+    //                     console.log('Data deleted');
+    //                 }
+    //             });
+    //             swal('Deleted!', 'Data anda berhasil dihapus.', 'success')
+    //             .then(function(result){
+    //                 location.reload();
+    //             });
+    //             // result.dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
+    //         } else if (result.dismiss === 'cancel') {
+    //             swal('Cancelled', 'Data anda batal dihapus', 'error');
+    //         }
+    //     });
+    // });
 </script>
 @endsection
