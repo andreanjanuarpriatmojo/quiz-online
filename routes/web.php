@@ -45,53 +45,14 @@ Route::post('/jadwal_ujian/ganti_peserta', 'JadwalUjianController@ganti_peserta'
 Route::get('/jadwal_ujian/ajax/get_paket', 'JadwalUjianController@getPaket')->middleware('checkRole:adminGuru');
 
 
-Route::get('/login', function () {
-    return view('auth.login');
-});
-Route::get('/register', function () {
-    return view('auth.register');
-});
-Route::get('/forgot', function () {
-    return view('auth.forgotpassword');
-});
-Route::get('/student', function () {
-    return view('student.index');
-});
-Route::get('/student-ce', function () {
-    return view('student.create');
-});
-Route::get('/teacher', function () {
-    return view('teacher.index');
-});
-Route::get('/teacher-ce', function () {
-    return view('teacher.create');
-});
-Route::get('/class', function () {
-    return view('class.index');
-});
-Route::get('/class-ce', function () {
-    return view('class.create');
-});
-Route::get('/result', function () {
-    return view('result.index');
-});
-Route::get('/result-view', function () {
-    return view('result.view');
-});
-Route::get('/quiz', function () {
-    return view('quiz.index');
-});
-Route::get('/setting', function () {
-    return view('setting');
-});
-Route::get('/quiz-ce', function () {
-    return view('quiz.create');
-});
-
 Route::get('siswa/ujian', 'UjianController@index');
 Route::get('siswa/ujian/{ujian_siswa_id}', 'UjianController@getUjian');
 Route::post('siswa/ujian/submit_jawaban', 'UjianController@submitJawaban');
 Route::get('siswa/ujian/{ujian_siswa_id}/finish', 'UjianController@finish');
+
+Route::get('/logout', function () {
+    Auth::logout();
+});
 
 Auth::routes();
 
